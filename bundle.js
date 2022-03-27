@@ -388,7 +388,7 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
   }, {
     key: "template",
     value: function template() {
-      return "\n      <form class=\"coin-charge-form\">\n        <label class=\"coin-charge-label\" for=\"coin-input\">\uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD560 \uAE08\uC561\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.</label>\n        <input type=\"number\" id=\"coin-input\" placeholder=\"\uAE08\uC561\">\n        <button class=\"coin-charge-button\">\uCDA9\uC804</button>\n      </form>\n      <p>\uD604\uC7AC \uBCF4\uC720 \uAE08\uC561: <span class=\"money\">0</span>\uC6D0</p>\n    ";
+      return "\n      <form class=\"coin-charge-form\">\n        <label class=\"coin-charge-label\" for=\"coin-input\">\uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD560 \uAE08\uC561\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.</label>\n        <input type=\"number\" id=\"coin-input\" placeholder=\"\uAE08\uC561\" required>\n        <button class=\"coin-charge-button\">\uCDA9\uC804</button>\n      </form>\n      <p>\uD604\uC7AC \uBCF4\uC720 \uAE08\uC561: <span class=\"money\">0</span>\uC6D0</p>\n    ";
     }
   }, {
     key: "setEvent",
