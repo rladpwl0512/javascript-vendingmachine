@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CONFIRM_MESSAGE": () => (/* binding */ CONFIRM_MESSAGE),
 /* harmony export */   "ERROR_MESSAGE": () => (/* binding */ ERROR_MESSAGE)
 /* harmony export */ });
-var BASE_URL = '';
+var BASE_URL = '/javascript-vendingmachine';
 var COIN = {
   DEFAULT_COUNT: 0
 };
@@ -903,7 +903,7 @@ var handleCoinChargeButtonClick = function handleCoinChargeButtonClick(event) {
 };
 
 var renderTargetContainer = function renderTargetContainer(path) {
-  if (path === "/".concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL)) {
+  if (path === "".concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/")) {
     renderProductManageContainer();
     return;
   }
