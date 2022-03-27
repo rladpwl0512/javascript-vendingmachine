@@ -234,19 +234,19 @@ customElements.define('administrator-menu', AdministratorMenu);
 
 /***/ }),
 
-/***/ "./src/elements/CoinChargeContainer.js":
-/*!*********************************************!*\
-  !*** ./src/elements/CoinChargeContainer.js ***!
-  \*********************************************/
+/***/ "./src/elements/CoinCharge/CoinChargeContainer.js":
+/*!********************************************************!*\
+  !*** ./src/elements/CoinCharge/CoinChargeContainer.js ***!
+  \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _CoinChargeForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CoinChargeForm */ "./src/elements/CoinChargeForm.js");
-/* harmony import */ var _CoinCurrentSituation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CoinCurrentSituation */ "./src/elements/CoinCurrentSituation.js");
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _CoinChargeForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CoinChargeForm */ "./src/elements/CoinCharge/CoinChargeForm.js");
+/* harmony import */ var _CoinCurrentSituation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CoinCurrentSituation */ "./src/elements/CoinCharge/CoinCurrentSituation.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -299,21 +299,21 @@ customElements.define('coin-charge-container', CoinChargeContainer);
 
 /***/ }),
 
-/***/ "./src/elements/CoinChargeForm.js":
-/*!****************************************!*\
-  !*** ./src/elements/CoinChargeForm.js ***!
-  \****************************************/
+/***/ "./src/elements/CoinCharge/CoinChargeForm.js":
+/*!***************************************************!*\
+  !*** ./src/elements/CoinCharge/CoinChargeForm.js ***!
+  \***************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domains/actions */ "./src/domains/actions.ts");
-/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/dom */ "./src/utils/dom.js");
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../validators */ "./src/validators.js");
+/* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -417,19 +417,19 @@ customElements.define('coin-charge-form', CoinChargeForm);
 
 /***/ }),
 
-/***/ "./src/elements/CoinCurrentSituation.js":
-/*!**********************************************!*\
-  !*** ./src/elements/CoinCurrentSituation.js ***!
-  \**********************************************/
+/***/ "./src/elements/CoinCharge/CoinCurrentSituation.js":
+/*!*********************************************************!*\
+  !*** ./src/elements/CoinCharge/CoinCurrentSituation.js ***!
+  \*********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
-/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/dom */ "./src/utils/dom.js");
+/* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -502,21 +502,21 @@ customElements.define('coin-current-situation', CoinCurrentSituation);
 
 /***/ }),
 
-/***/ "./src/elements/ProductAddForm.js":
-/*!****************************************!*\
-  !*** ./src/elements/ProductAddForm.js ***!
-  \****************************************/
+/***/ "./src/elements/ProductManage/ProductAddForm.js":
+/*!******************************************************!*\
+  !*** ./src/elements/ProductManage/ProductAddForm.js ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domains/stores/ProductStore */ "./src/domains/stores/ProductStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domains/actions */ "./src/domains/actions.ts");
-/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/dom */ "./src/utils/dom.js");
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../validators */ "./src/validators.js");
+/* harmony import */ var _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domains/stores/ProductStore */ "./src/domains/stores/ProductStore.ts");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -607,22 +607,22 @@ customElements.define('product-add-form', ProductAddForm);
 
 /***/ }),
 
-/***/ "./src/elements/ProductCurrentSituation.js":
-/*!*************************************************!*\
-  !*** ./src/elements/ProductCurrentSituation.js ***!
-  \*************************************************/
+/***/ "./src/elements/ProductManage/ProductCurrentSituation.js":
+/*!***************************************************************!*\
+  !*** ./src/elements/ProductManage/ProductCurrentSituation.js ***!
+  \***************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../domains/stores/ProductStore */ "./src/domains/stores/ProductStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../domains/actions */ "./src/domains/actions.ts");
-/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/dom */ "./src/utils/dom.js");
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../validators */ "./src/validators.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
+/* harmony import */ var _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../domains/stores/ProductStore */ "./src/domains/stores/ProductStore.ts");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -764,6 +764,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
 
       var name = _ref2.name;
       var $tbodyRow = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)("[data-product-name=\"".concat(name, "\"]"));
+      $tbodyRow.scrollIntoView();
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.table__product-modify-button', $tbodyRow).addEventListener('click', function () {
         return _this2.handleProductModifyButtonClick($tbodyRow);
       });
@@ -822,19 +823,19 @@ customElements.define('product-current-situation', ProductCurrentSituation);
 
 /***/ }),
 
-/***/ "./src/elements/ProductManageContainer.js":
-/*!************************************************!*\
-  !*** ./src/elements/ProductManageContainer.js ***!
-  \************************************************/
+/***/ "./src/elements/ProductManage/ProductManageContainer.js":
+/*!**************************************************************!*\
+  !*** ./src/elements/ProductManage/ProductManageContainer.js ***!
+  \**************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _ProductAddForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAddForm */ "./src/elements/ProductAddForm.js");
-/* harmony import */ var _ProductCurrentSituation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCurrentSituation */ "./src/elements/ProductCurrentSituation.js");
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _ProductAddForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductAddForm */ "./src/elements/ProductManage/ProductAddForm.js");
+/* harmony import */ var _ProductCurrentSituation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCurrentSituation */ "./src/elements/ProductManage/ProductCurrentSituation.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1100,7 +1101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".product-input-container {\n  margin-top: 4px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.product-add-button,\n.coin-charge-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.product-add-button:hover,\n.coin-charge-button:hover {\n  background: var(--cyan-dark);\n}\n\nh2 {\n  margin-top: 48px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 300px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 16px auto 0;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button {\n  width: 100px;\n  height: 32px;\n}\n\n.coin-charge-label {\n  display: block;\n  margin-bottom: 4px;\n}\n\n#coin-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation {\n  width: 238px;\n}\n", "",{"version":3,"sources":["webpack://./src/css/container.css"],"names":[],"mappings":"AAAA;EACE,eAAe;AACjB;;AAEA;;;EAGE,YAAY;EACZ,YAAY;AACd;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;;EAEE,4BAA4B;AAC9B;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,mBAAmB;EACnB,yBAAyB;EACzB,yCAAyC;AAC3C;;AAEA;;EAEE,YAAY;EACZ,4CAA4C;EAC5C,kBAAkB;AACpB;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,cAAc;EACd,kBAAkB;AACpB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,mBAAmB;AACrB;;AAEA;EACE,YAAY;AACd","sourcesContent":[".product-input-container {\n  margin-top: 4px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.product-add-button,\n.coin-charge-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.product-add-button:hover,\n.coin-charge-button:hover {\n  background: var(--cyan-dark);\n}\n\nh2 {\n  margin-top: 48px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 300px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 16px auto 0;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button {\n  width: 100px;\n  height: 32px;\n}\n\n.coin-charge-label {\n  display: block;\n  margin-bottom: 4px;\n}\n\n#coin-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation {\n  width: 238px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".product-input-container {\n  margin-top: 4px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.product-add-button,\n.coin-charge-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.product-add-button:hover,\n.coin-charge-button:hover {\n  background: var(--cyan-dark);\n}\n\nh2 {\n  margin: 48px 0 16px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 285px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button {\n  width: 100px;\n  height: 32px;\n}\n\n.coin-charge-label {\n  display: block;\n  margin-bottom: 4px;\n}\n\n#coin-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation {\n  width: 238px;\n}\n", "",{"version":3,"sources":["webpack://./src/css/container.css"],"names":[],"mappings":"AAAA;EACE,eAAe;AACjB;;AAEA;;;EAGE,YAAY;EACZ,YAAY;AACd;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,iBAAiB;EACjB,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;;EAEE,4BAA4B;AAC9B;;AAEA;EACE,mBAAmB;EACnB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,cAAc;EACd,yBAAyB;EACzB,yCAAyC;AAC3C;;AAEA;;EAEE,YAAY;EACZ,4CAA4C;EAC5C,kBAAkB;AACpB;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,cAAc;EACd,kBAAkB;AACpB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,mBAAmB;AACrB;;AAEA;EACE,YAAY;AACd","sourcesContent":[".product-input-container {\n  margin-top: 4px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.product-add-button,\n.coin-charge-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.product-add-button:hover,\n.coin-charge-button:hover {\n  background: var(--cyan-dark);\n}\n\nh2 {\n  margin: 48px 0 16px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 285px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button {\n  width: 100px;\n  height: 32px;\n}\n\n.coin-charge-label {\n  display: block;\n  margin-bottom: 4px;\n}\n\n#coin-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation {\n  width: 238px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1975,8 +1976,8 @@ var __webpack_exports__ = {};
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elements_AdministratorMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./elements/AdministratorMenu */ "./src/elements/AdministratorMenu.js");
-/* harmony import */ var _elements_ProductManageContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./elements/ProductManageContainer */ "./src/elements/ProductManageContainer.js");
-/* harmony import */ var _elements_CoinChargeContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./elements/CoinChargeContainer */ "./src/elements/CoinChargeContainer.js");
+/* harmony import */ var _elements_ProductManage_ProductManageContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./elements/ProductManage/ProductManageContainer */ "./src/elements/ProductManage/ProductManageContainer.js");
+/* harmony import */ var _elements_CoinCharge_CoinChargeContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./elements/CoinCharge/CoinChargeContainer */ "./src/elements/CoinCharge/CoinChargeContainer.js");
 /* harmony import */ var _css_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/index */ "./src/css/index.css");
 
 
