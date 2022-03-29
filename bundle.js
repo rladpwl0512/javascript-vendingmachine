@@ -345,7 +345,7 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
       try {
         _this.chargeCoin(coinInputValue);
 
-        _this.initiaCoinInput($coinInput);
+        _this.initCoinInput($coinInput);
       } catch (error) {
         alert(error.message);
       }
@@ -379,8 +379,8 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
       _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.COIN_ADD, coinInputValue));
     }
   }, {
-    key: "initiaCoinInput",
-    value: function initiaCoinInput($coinInput) {
+    key: "initCoinInput",
+    value: function initCoinInput($coinInput) {
       $coinInput.value = '';
       $coinInput.focus();
     }
@@ -559,7 +559,7 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
       try {
         _this.addProduct(newProduct);
 
-        _this.initiaProductInputs($productNameInput, $productPriceInput, $productQuantityInput);
+        _this.initProductInputs($productNameInput, $productPriceInput, $productQuantityInput);
       } catch (error) {
         alert(error.message);
       }
@@ -585,8 +585,8 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
       _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.ADD, newProduct));
     }
   }, {
-    key: "initiaProductInputs",
-    value: function initiaProductInputs($productNameInput, $productPriceInput, $productQuantityInput) {
+    key: "initProductInputs",
+    value: function initProductInputs($productNameInput, $productPriceInput, $productQuantityInput) {
       $productNameInput.value = '';
       $productPriceInput.value = '';
       $productQuantityInput.value = '';
