@@ -1811,10 +1811,7 @@ class CoinStore {
         _CoinStore_coinsCountSubscribers.set(this, []);
     }
     static get instance() {
-        if (!CoinStore._instance) {
-            CoinStore._instance = new CoinStore();
-        }
-        return CoinStore._instance;
+        return this._instance;
     }
     subscribeMoney(element) {
         __classPrivateFieldGet(this, _CoinStore_moneySubscribers, "f").push(element);
@@ -1877,7 +1874,7 @@ class CoinStore {
     }
 }
 _CoinStore_money = new WeakMap(), _CoinStore_coinsCount = new WeakMap(), _CoinStore_moneySubscribers = new WeakMap(), _CoinStore_coinsCountSubscribers = new WeakMap();
-CoinStore._instance = null;
+CoinStore._instance = new CoinStore();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoinStore);
 
 
@@ -1913,10 +1910,7 @@ class ProductStore {
         _ProductStore_subscribers.set(this, []);
     }
     static get instance() {
-        if (!ProductStore._instance) {
-            ProductStore._instance = new ProductStore();
-        }
-        return ProductStore._instance;
+        return this._instance;
     }
     subscribe(element) {
         __classPrivateFieldGet(this, _ProductStore_subscribers, "f").push(element);
@@ -1964,7 +1958,7 @@ class ProductStore {
     }
 }
 _ProductStore_products = new WeakMap(), _ProductStore_subscribers = new WeakMap();
-ProductStore._instance = null;
+ProductStore._instance = new ProductStore();
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductStore);
 
 
