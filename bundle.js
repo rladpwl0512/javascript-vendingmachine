@@ -1811,7 +1811,10 @@ class CoinStore {
         _CoinStore_coinsCountSubscribers.set(this, []);
     }
     static get instance() {
-        return this._instance;
+        if (!CoinStore._instance) {
+            CoinStore._instance = new CoinStore();
+        }
+        return CoinStore._instance;
     }
     subscribeMoney(element) {
         __classPrivateFieldGet(this, _CoinStore_moneySubscribers, "f").push(element);
@@ -1831,11 +1834,11 @@ class CoinStore {
                 break;
             }
             case _actions__WEBPACK_IMPORTED_MODULE_0__.COIN_ACTION.COIN_ADD: {
-                __classPrivateFieldSet(this, _CoinStore_coinsCount, this.generateNewCoinsCount(__classPrivateFieldGet(this, _CoinStore_coinsCount, "f"), detail), "f");
+                __classPrivateFieldSet(this, _CoinStore_coinsCount, this.generateRandomCoins(__classPrivateFieldGet(this, _CoinStore_coinsCount, "f"), detail), "f");
             }
         }
     }
-    generateNewCoinsCount(oldCoinsCount, detail) {
+    generateRandomCoins(oldCoinsCount, detail) {
         const newCoinsCount = oldCoinsCount;
         let coinList = [500, 100, 50, 10];
         let money = detail;
@@ -1874,7 +1877,7 @@ class CoinStore {
     }
 }
 _CoinStore_money = new WeakMap(), _CoinStore_coinsCount = new WeakMap(), _CoinStore_moneySubscribers = new WeakMap(), _CoinStore_coinsCountSubscribers = new WeakMap();
-CoinStore._instance = new CoinStore();
+CoinStore._instance = null;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoinStore);
 
 
@@ -1910,7 +1913,10 @@ class ProductStore {
         _ProductStore_subscribers.set(this, []);
     }
     static get instance() {
-        return this._instance;
+        if (!ProductStore._instance) {
+            ProductStore._instance = new ProductStore();
+        }
+        return ProductStore._instance;
     }
     subscribe(element) {
         __classPrivateFieldGet(this, _ProductStore_subscribers, "f").push(element);
@@ -1958,7 +1964,7 @@ class ProductStore {
     }
 }
 _ProductStore_products = new WeakMap(), _ProductStore_subscribers = new WeakMap();
-ProductStore._instance = new ProductStore();
+ProductStore._instance = null;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductStore);
 
 
