@@ -1931,7 +1931,7 @@ class ProductStore {
     }
     // eslint-disable-next-line max-lines-per-function
     generateNewProducts(oldProducts, { type, detail }) {
-        const newProducts = oldProducts;
+        const newProducts = [...oldProducts];
         switch (type) {
             case _actions__WEBPACK_IMPORTED_MODULE_0__.PRODUCT_ACTION.ADD: {
                 newProducts.push(detail);
