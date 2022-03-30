@@ -460,8 +460,8 @@ var CoinCurrentSituation = /*#__PURE__*/function (_CustomElement) {
     }
   }, {
     key: "rerender",
-    value: function rerender(newMoney, newCoinsCount) {
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.money').textContent = newMoney;
+    value: function rerender(newCoinsCount) {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.money').textContent = newCoinsCount.sum;
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.coin-500-count-td').textContent = "".concat(newCoinsCount[500], "\uAC1C");
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.coin-100-count-td').textContent = "".concat(newCoinsCount[100], "\uAC1C");
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.coin-50-count-td').textContent = "".concat(newCoinsCount[50], "\uAC1C");
@@ -1756,8 +1756,7 @@ const PRODUCT_ACTION = {
     DELETE: 'product-delete',
 };
 const COIN_ACTION = {
-    MONEY_CHARGE: 'money-charge',
-    COIN_ADD: 'coin-add',
+    COIN_CHARGE: 'coin-charge',
 };
 
 
@@ -1786,17 +1785,17 @@ var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || 
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _CoinStore_money, _CoinStore_coinsCount, _CoinStore_subscribers;
+var _CoinStore_coinsCount, _CoinStore_subscribers;
 
 
 class CoinStore {
     constructor() {
-        _CoinStore_money.set(this, _constants__WEBPACK_IMPORTED_MODULE_0__.MONEY.DEFAULT);
         _CoinStore_coinsCount.set(this, {
             500: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
             100: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
             50: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
             10: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
+            sum: _constants__WEBPACK_IMPORTED_MODULE_0__.MONEY.DEFAULT,
         });
         _CoinStore_subscribers.set(this, []);
     }
@@ -1810,18 +1809,17 @@ class CoinStore {
         __classPrivateFieldGet(this, _CoinStore_subscribers, "f").push(element);
     }
     dispatch(action) {
-        this.updateMoneyOrCoinsCount(action);
+        this.updateCoinsCount(action);
         this.notifySubscribers();
     }
-    updateMoneyOrCoinsCount(action) {
+    updateCoinsCount(action) {
         const { detail } = action;
-        __classPrivateFieldSet(this, _CoinStore_money, __classPrivateFieldGet(this, _CoinStore_money, "f") + detail, "f");
         __classPrivateFieldSet(this, _CoinStore_coinsCount, this.generateRandomCoins(__classPrivateFieldGet(this, _CoinStore_coinsCount, "f"), detail), "f");
     }
     generateRandomCoins(oldCoinsCount, detail) {
         const newCoinsCount = oldCoinsCount;
         let coinList = [500, 100, 50, 10];
-        let money = detail;
+        let money = detail; // 들어온 돈
         while (money) {
             const randomCoin = (0,_utils_random__WEBPACK_IMPORTED_MODULE_1__["default"])(coinList);
             if (money < randomCoin) {
@@ -1829,6 +1827,7 @@ class CoinStore {
                 continue;
             }
             newCoinsCount[randomCoin] += 1;
+            newCoinsCount.sum += randomCoin;
             money -= randomCoin;
         }
         return newCoinsCount;
@@ -1838,17 +1837,14 @@ class CoinStore {
     }
     notifySubscribers() {
         __classPrivateFieldGet(this, _CoinStore_subscribers, "f").forEach((subscriber) => {
-            subscriber.rerender(__classPrivateFieldGet(this, _CoinStore_money, "f"), __classPrivateFieldGet(this, _CoinStore_coinsCount, "f"));
+            subscriber.rerender(__classPrivateFieldGet(this, _CoinStore_coinsCount, "f"));
         });
-    }
-    get money() {
-        return __classPrivateFieldGet(this, _CoinStore_money, "f");
     }
     get coinsCount() {
         return __classPrivateFieldGet(this, _CoinStore_coinsCount, "f");
     }
 }
-_CoinStore_money = new WeakMap(), _CoinStore_coinsCount = new WeakMap(), _CoinStore_subscribers = new WeakMap();
+_CoinStore_coinsCount = new WeakMap(), _CoinStore_subscribers = new WeakMap();
 CoinStore._instance = null;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoinStore);
 
