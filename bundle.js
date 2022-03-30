@@ -358,13 +358,11 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
     key: "connectedCallback",
     value: function connectedCallback() {
       _get(_getPrototypeOf(CoinChargeForm.prototype), "connectedCallback", this).call(this);
-
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.subscribeMoney(this);
     }
   }, {
     key: "template",
     value: function template() {
-      return "\n      <form class=\"coin-charge-form\">\n        <label class=\"coin-charge-label\" for=\"coin-input\">\uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD560 \uAE08\uC561\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.</label>\n        <input type=\"number\" id=\"coin-input\" placeholder=\"\uAE08\uC561\" required>\n        <button class=\"coin-charge-button\">\uCDA9\uC804</button>\n      </form>\n      <p>\uD604\uC7AC \uBCF4\uC720 \uAE08\uC561: <span class=\"money\">0</span>\uC6D0</p>\n    ";
+      return "\n      <form class=\"coin-charge-form\">\n        <label class=\"coin-charge-label\" for=\"coin-input\">\uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD560 \uAE08\uC561\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694.</label>\n        <input type=\"number\" id=\"coin-input\" placeholder=\"\uAE08\uC561\" required>\n        <button class=\"coin-charge-button\">\uCDA9\uC804</button>\n      </form>\n    ";
     }
   }, {
     key: "setEvent",
@@ -375,19 +373,13 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
     key: "chargeCoin",
     value: function chargeCoin(coinInputValue) {
       (0,_validators__WEBPACK_IMPORTED_MODULE_4__.checkCoinValidation)(coinInputValue);
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.MONEY_CHARGE, coinInputValue));
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.COIN_ADD, coinInputValue));
+      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.COIN_CHARGE, coinInputValue));
     }
   }, {
     key: "initCoinInput",
     value: function initCoinInput($coinInput) {
       $coinInput.value = '';
       $coinInput.focus();
-    }
-  }, {
-    key: "rerender",
-    value: function rerender(newMoney) {
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.money').textContent = newMoney;
     }
   }]);
 
@@ -458,17 +450,18 @@ var CoinCurrentSituation = /*#__PURE__*/function (_CustomElement) {
     value: function connectedCallback() {
       _get(_getPrototypeOf(CoinCurrentSituation.prototype), "connectedCallback", this).call(this);
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.subscribeCoinsCount(this);
+      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.subscribe(this);
     } // eslint-disable-next-line max-lines-per-function
 
   }, {
     key: "template",
     value: function template() {
-      return "\n      <h2>\uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD55C \uB3D9\uC804</h2>\n      <table class=\"coin-current-situation\">\n        <thead>\n          <tr>\n            <th>\uB3D9\uC804</th>\n            <th>\uAC1C\uC218</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>500\uC6D0</td>\n            <td class=\"coin-500-count-td\">0\uAC1C</td>\n          </tr>\n          <tr>\n            <td>100\uC6D0</td>\n            <td class=\"coin-100-count-td\">0\uAC1C</td>\n          </tr>\n          </tr>\n          <tr>\n            <td>50\uC6D0</td>\n            <td class=\"coin-50-count-td\">0\uAC1C</td>\n          </tr>\n          <tr>\n            <td>10\uC6D0</td>\n            <td class=\"coin-10-count-td\">0\uAC1C</td>\n          </tr>\n        </tbody>\n      </table>\n    ";
+      return "\n      <p>\uD604\uC7AC \uBCF4\uC720 \uAE08\uC561: <span class=\"money\">0</span>\uC6D0</p>\n      <h2>\uC790\uD310\uAE30\uAC00 \uBCF4\uC720\uD55C \uB3D9\uC804</h2>\n      <table class=\"coin-current-situation\">\n        <thead>\n          <tr>\n            <th>\uB3D9\uC804</th>\n            <th>\uAC1C\uC218</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>500\uC6D0</td>\n            <td class=\"coin-500-count-td\">0\uAC1C</td>\n          </tr>\n          <tr>\n            <td>100\uC6D0</td>\n            <td class=\"coin-100-count-td\">0\uAC1C</td>\n          </tr>\n          </tr>\n          <tr>\n            <td>50\uC6D0</td>\n            <td class=\"coin-50-count-td\">0\uAC1C</td>\n          </tr>\n          <tr>\n            <td>10\uC6D0</td>\n            <td class=\"coin-10-count-td\">0\uAC1C</td>\n          </tr>\n        </tbody>\n      </table>\n    ";
     }
   }, {
     key: "rerender",
-    value: function rerender(newCoinsCount) {
+    value: function rerender(newMoney, newCoinsCount) {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.money').textContent = newMoney;
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.coin-500-count-td').textContent = "".concat(newCoinsCount[500], "\uAC1C");
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.coin-100-count-td').textContent = "".concat(newCoinsCount[100], "\uAC1C");
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_2__.$)('.coin-50-count-td').textContent = "".concat(newCoinsCount[50], "\uAC1C");
@@ -1780,9 +1773,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions */ "./src/domains/actions.ts");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
-/* harmony import */ var _utils_random__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/random */ "./src/utils/random.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
+/* harmony import */ var _utils_random__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/random */ "./src/utils/random.js");
 var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
@@ -1794,21 +1786,19 @@ var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || 
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
-var _CoinStore_money, _CoinStore_coinsCount, _CoinStore_moneySubscribers, _CoinStore_coinsCountSubscribers;
-
+var _CoinStore_money, _CoinStore_coinsCount, _CoinStore_subscribers;
 
 
 class CoinStore {
     constructor() {
-        _CoinStore_money.set(this, _constants__WEBPACK_IMPORTED_MODULE_1__.MONEY.DEFAULT);
+        _CoinStore_money.set(this, _constants__WEBPACK_IMPORTED_MODULE_0__.MONEY.DEFAULT);
         _CoinStore_coinsCount.set(this, {
-            500: _constants__WEBPACK_IMPORTED_MODULE_1__.COIN.DEFAULT_COUNT,
-            100: _constants__WEBPACK_IMPORTED_MODULE_1__.COIN.DEFAULT_COUNT,
-            50: _constants__WEBPACK_IMPORTED_MODULE_1__.COIN.DEFAULT_COUNT,
-            10: _constants__WEBPACK_IMPORTED_MODULE_1__.COIN.DEFAULT_COUNT,
+            500: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
+            100: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
+            50: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
+            10: _constants__WEBPACK_IMPORTED_MODULE_0__.COIN.DEFAULT_COUNT,
         });
-        _CoinStore_moneySubscribers.set(this, []);
-        _CoinStore_coinsCountSubscribers.set(this, []);
+        _CoinStore_subscribers.set(this, []);
     }
     static get instance() {
         if (!CoinStore._instance) {
@@ -1816,34 +1806,24 @@ class CoinStore {
         }
         return CoinStore._instance;
     }
-    subscribeMoney(element) {
-        __classPrivateFieldGet(this, _CoinStore_moneySubscribers, "f").push(element);
-    }
-    subscribeCoinsCount(element) {
-        __classPrivateFieldGet(this, _CoinStore_coinsCountSubscribers, "f").push(element);
+    subscribe(element) {
+        __classPrivateFieldGet(this, _CoinStore_subscribers, "f").push(element);
     }
     dispatch(action) {
         this.updateMoneyOrCoinsCount(action);
-        this.notifySubscribers(action);
+        this.notifySubscribers();
     }
     updateMoneyOrCoinsCount(action) {
-        const { type, detail } = action;
-        switch (type) {
-            case _actions__WEBPACK_IMPORTED_MODULE_0__.COIN_ACTION.MONEY_CHARGE: {
-                __classPrivateFieldSet(this, _CoinStore_money, __classPrivateFieldGet(this, _CoinStore_money, "f") + detail, "f");
-                break;
-            }
-            case _actions__WEBPACK_IMPORTED_MODULE_0__.COIN_ACTION.COIN_ADD: {
-                __classPrivateFieldSet(this, _CoinStore_coinsCount, this.generateRandomCoins(__classPrivateFieldGet(this, _CoinStore_coinsCount, "f"), detail), "f");
-            }
-        }
+        const { detail } = action;
+        __classPrivateFieldSet(this, _CoinStore_money, __classPrivateFieldGet(this, _CoinStore_money, "f") + detail, "f");
+        __classPrivateFieldSet(this, _CoinStore_coinsCount, this.generateRandomCoins(__classPrivateFieldGet(this, _CoinStore_coinsCount, "f"), detail), "f");
     }
     generateRandomCoins(oldCoinsCount, detail) {
         const newCoinsCount = oldCoinsCount;
         let coinList = [500, 100, 50, 10];
         let money = detail;
         while (money) {
-            const randomCoin = (0,_utils_random__WEBPACK_IMPORTED_MODULE_2__["default"])(coinList);
+            const randomCoin = (0,_utils_random__WEBPACK_IMPORTED_MODULE_1__["default"])(coinList);
             if (money < randomCoin) {
                 coinList = this.generateNewCoinList(coinList, money);
                 continue;
@@ -1856,18 +1836,10 @@ class CoinStore {
     generateNewCoinList(coinList, money) {
         return coinList.filter((coin) => coin <= money);
     }
-    notifySubscribers({ type }) {
-        switch (type) {
-            case _actions__WEBPACK_IMPORTED_MODULE_0__.COIN_ACTION.MONEY_CHARGE:
-                __classPrivateFieldGet(this, _CoinStore_moneySubscribers, "f").forEach((subscriber) => {
-                    subscriber.rerender(__classPrivateFieldGet(this, _CoinStore_money, "f"));
-                });
-                break;
-            case _actions__WEBPACK_IMPORTED_MODULE_0__.COIN_ACTION.COIN_ADD:
-                __classPrivateFieldGet(this, _CoinStore_coinsCountSubscribers, "f").forEach((subscriber) => {
-                    subscriber.rerender(__classPrivateFieldGet(this, _CoinStore_coinsCount, "f"));
-                });
-        }
+    notifySubscribers() {
+        __classPrivateFieldGet(this, _CoinStore_subscribers, "f").forEach((subscriber) => {
+            subscriber.rerender(__classPrivateFieldGet(this, _CoinStore_money, "f"), __classPrivateFieldGet(this, _CoinStore_coinsCount, "f"));
+        });
     }
     get money() {
         return __classPrivateFieldGet(this, _CoinStore_money, "f");
@@ -1876,7 +1848,7 @@ class CoinStore {
         return __classPrivateFieldGet(this, _CoinStore_coinsCount, "f");
     }
 }
-_CoinStore_money = new WeakMap(), _CoinStore_coinsCount = new WeakMap(), _CoinStore_moneySubscribers = new WeakMap(), _CoinStore_coinsCountSubscribers = new WeakMap();
+_CoinStore_money = new WeakMap(), _CoinStore_coinsCount = new WeakMap(), _CoinStore_subscribers = new WeakMap();
 CoinStore._instance = null;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoinStore);
 
