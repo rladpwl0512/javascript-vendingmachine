@@ -102,7 +102,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CONFIRM_MESSAGE": () => (/* binding */ CONFIRM_MESSAGE),
 /* harmony export */   "ERROR_MESSAGE": () => (/* binding */ ERROR_MESSAGE)
 /* harmony export */ });
-var BASE_URL = '/javascript-vendingmachine';
+var BASE_URL = ''; // javascript-vendingmachine
+
 var COIN = {
   DEFAULT_COUNT: 0
 };
@@ -351,7 +352,7 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
 
       _this.initCoinInput($coinInput);
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.COIN_CHARGE, coinInputValue));
+      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.COIN_CHARGE, coinInputValue));
     });
 
     return _this;
@@ -447,7 +448,7 @@ var CoinCurrentSituation = /*#__PURE__*/function (_CustomElement) {
     value: function connectedCallback() {
       _get(_getPrototypeOf(CoinCurrentSituation.prototype), "connectedCallback", this).call(this);
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.subscribe(this);
+      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].subscribe(this);
     }
   }, {
     key: "template",
@@ -554,7 +555,7 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
 
       _this.initProductInputs($productNameInput, $productPriceInput, $productQuantityInput);
 
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.ADD, newProduct));
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.ADD, newProduct));
     });
 
     return _this;
@@ -681,7 +682,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
 
     _defineProperty(_assertThisInitialized(_this), "handleProductDeleteButtonClick", function (productName) {
       if (!window.confirm(_constants__WEBPACK_IMPORTED_MODULE_5__.CONFIRM_MESSAGE.DELETE)) return;
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.DELETE, productName));
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.DELETE, productName));
     });
 
     return _this;
@@ -692,7 +693,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
     value: function connectedCallback() {
       _get(_getPrototypeOf(ProductCurrentSituation.prototype), "connectedCallback", this).call(this);
 
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.subscribe(this);
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].subscribe(this);
     }
   }, {
     key: "template",
@@ -801,7 +802,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
       }
 
       (0,_validators__WEBPACK_IMPORTED_MODULE_4__.checkProductValidation)(newProductInfo);
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.MODIFY, {
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.MODIFY, {
         oldProductName: oldProductName,
         newProductInfo: newProductInfo
       }));
@@ -1023,9 +1024,9 @@ var isOverMaxProductNameLength = function isOverMaxProductNameLength(name) {
 };
 
 var isAlreadyExistProduct = function isAlreadyExistProduct(name) {
-  var _ProductStore$instanc;
+  var _ProductStoreInstance;
 
-  var products = (_ProductStore$instanc = _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.products) !== null && _ProductStore$instanc !== void 0 ? _ProductStore$instanc : [];
+  var products = (_ProductStoreInstance = _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].products) !== null && _ProductStoreInstance !== void 0 ? _ProductStoreInstance : [];
   var existProductNames = products.map(function (product) {
     return product.name;
   });
@@ -1049,7 +1050,7 @@ var isOverMaxQuantity = function isOverMaxQuantity(quantity) {
 };
 
 var isOverMaxMoney = function isOverMaxMoney(inputMoney) {
-  var currentMoney = _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_1__["default"].instance.money;
+  var currentMoney = _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_1__["default"].money;
   return currentMoney + inputMoney > _constants__WEBPACK_IMPORTED_MODULE_2__.MONEY.MAX;
 };
 
@@ -1798,12 +1799,6 @@ class CoinStore {
         });
         _CoinStore_subscribers.set(this, []);
     }
-    static get instance() {
-        if (!CoinStore._instance) {
-            CoinStore._instance = new CoinStore();
-        }
-        return CoinStore._instance;
-    }
     subscribe(element) {
         __classPrivateFieldGet(this, _CoinStore_subscribers, "f").push(element);
     }
@@ -1844,8 +1839,8 @@ class CoinStore {
     }
 }
 _CoinStore_coinsCount = new WeakMap(), _CoinStore_subscribers = new WeakMap();
-CoinStore._instance = null;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoinStore);
+const CoinStoreInstance = new CoinStore();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoinStoreInstance);
 
 
 /***/ }),
@@ -1878,12 +1873,6 @@ class ProductStore {
     constructor() {
         _ProductStore_products.set(this, []);
         _ProductStore_subscribers.set(this, []);
-    }
-    static get instance() {
-        if (!ProductStore._instance) {
-            ProductStore._instance = new ProductStore();
-        }
-        return ProductStore._instance;
     }
     subscribe(element) {
         __classPrivateFieldGet(this, _ProductStore_subscribers, "f").push(element);
@@ -1930,8 +1919,8 @@ class ProductStore {
     }
 }
 _ProductStore_products = new WeakMap(), _ProductStore_subscribers = new WeakMap();
-ProductStore._instance = null;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductStore);
+const ProductStoreInstance = new ProductStore();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductStoreInstance);
 
 
 /***/ })
