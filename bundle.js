@@ -448,8 +448,7 @@ var CoinCurrentSituation = /*#__PURE__*/function (_CustomElement) {
       _get(_getPrototypeOf(CoinCurrentSituation.prototype), "connectedCallback", this).call(this);
 
       _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].instance.subscribe(this);
-    } // eslint-disable-next-line max-lines-per-function
-
+    }
   }, {
     key: "template",
     value: function template() {
@@ -570,8 +569,7 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
     key: "setEvent",
     value: function setEvent() {
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('product-add-form').addEventListener('submit', this.handleProductAddFormSubmit);
-    } // eslint-disable-next-line max-lines-per-function
-
+    }
   }, {
     key: "initProductInputs",
     value: function initProductInputs($productNameInput, $productPriceInput, $productQuantityInput) {
@@ -700,8 +698,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
     key: "template",
     value: function template() {
       return "\n      <h2>\uC0C1\uD488 \uD604\uD669</h2>\n      <div class=\"product-current-situation-container\">\n        <table class=\"product-current-situation\">\n          <thead>\n            <tr>\n              <th>\uC0C1\uD488\uBA85</th>\n              <th>\uAC00\uACA9</th>\n              <th>\uC218\uB7C9</th>\n              <th></th>\n            </tr>\n          </thead>\n          <tbody></tbody>\n        </table>\n      </div>\n    ";
-    } // eslint-disable-next-line max-lines-per-function
-
+    }
   }, {
     key: "rerender",
     value: function rerender(_ref) {
@@ -723,7 +720,8 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
             (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-name-td', $tbodyRow).textContent = newProductInfo.name;
             (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-price-td', $tbodyRow).textContent = newProductInfo.price;
             (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-quantity-td', $tbodyRow).textContent = newProductInfo.quantity;
-            (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-manage-buttons-td', $tbodyRow).innerHTML = "\n          <button class=\"table__product-modify-button\">\uC218\uC815</button>\n          <button class=\"table__product-delete-button\">\uC0AD\uC81C</button>\n        ";
+            (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-manage-buttons-td', $tbodyRow).replaceChildren();
+            (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-manage-buttons-td', $tbodyRow).insertAdjacentHTML('beforeend', "<button class=\"table__product-modify-button\">\uC218\uC815</button>\n            <button class=\"table__product-delete-button\">\uC0AD\uC81C</button>");
             this.setEventAfterRerender(newProductInfo);
             break;
           }
@@ -759,13 +757,20 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
     key: "makeProductInfoModifiable",
     value: function makeProductInfoModifiable($tbodyRow) {
       var $productNameTd = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-name-td', $tbodyRow);
-      $productNameTd.innerHTML = "<input class=\"product-name-input\" placeholder=\"\uC0C1\uD488\uBA85\" value=\"".concat($productNameTd.textContent, "\" maxlength=\"10\" required>");
+      var oldProductName = $productNameTd.textContent;
+      $productNameTd.replaceChildren();
+      $productNameTd.insertAdjacentHTML('beforeend', "<input class=\"product-name-input\" placeholder=\"\uC0C1\uD488\uBA85\" value=\"".concat(oldProductName, "\" maxlength=\"10\" required>"));
       var $productPriceTd = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-price-td', $tbodyRow);
-      $productPriceTd.innerHTML = "<input type=\"number\" class=\"product-price-input\" placeholder=\"\uAC00\uACA9\" value=\"".concat($productPriceTd.textContent, "\" min=\"100\" max=\"10000\" required>");
+      var oldProductPrice = $productPriceTd.textContent;
+      $productPriceTd.replaceChildren();
+      $productPriceTd.insertAdjacentHTML('beforeend', "<input type=\"number\" class=\"product-price-input\" placeholder=\"\uAC00\uACA9\" value=\"".concat(oldProductPrice, "\" min=\"100\" max=\"10000\" required>"));
       var $productQuantityTd = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-quantity-td', $tbodyRow);
-      $productQuantityTd.innerHTML = "<input type=\"number\" class=\"product-quantity-input\" placeholder=\"\uC218\uB7C9\" value=\"".concat($productQuantityTd.textContent, "\" min=\"1\" max=\"20\" required>");
+      var oldProductQuantity = $productQuantityTd.textContent;
+      $productQuantityTd.replaceChildren();
+      $productQuantityTd.insertAdjacentHTML('beforeend', "<input type=\"number\" class=\"product-quantity-input\" placeholder=\"\uC218\uB7C9\" value=\"".concat(oldProductQuantity, "\" min=\"1\" max=\"20\" required>"));
       var $productManageButtonsTd = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-manage-buttons-td', $tbodyRow);
-      $productManageButtonsTd.innerHTML = "<button class=\"table__product-modify-confirm-button\">\uD655\uC778</button>";
+      $productManageButtonsTd.replaceChildren();
+      $productManageButtonsTd.insertAdjacentHTML('beforeend', "<button class=\"table__product-modify-confirm-button\">\uD655\uC778</button>");
     }
   }, {
     key: "setEventForProductModify",
@@ -1046,8 +1051,7 @@ var isOverMaxQuantity = function isOverMaxQuantity(quantity) {
 var isOverMaxMoney = function isOverMaxMoney(inputMoney) {
   var currentMoney = _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_1__["default"].instance.money;
   return currentMoney + inputMoney > _constants__WEBPACK_IMPORTED_MODULE_2__.MONEY.MAX;
-}; // eslint-disable-next-line max-lines-per-function
-
+};
 
 var checkProductValidation = function checkProductValidation(_ref) {
   var name = _ref.name,
@@ -1892,7 +1896,6 @@ class ProductStore {
         const newProducts = this.generateNewProducts(__classPrivateFieldGet(this, _ProductStore_products, "f"), action);
         __classPrivateFieldSet(this, _ProductStore_products, newProducts, "f");
     }
-    // eslint-disable-next-line max-lines-per-function
     generateNewProducts(oldProducts, { type, detail }) {
         const newProducts = [...oldProducts];
         switch (type) {
