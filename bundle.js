@@ -709,7 +709,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
       switch (type) {
         case _domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.ADD:
           (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('tbody', (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-current-situation')).insertAdjacentHTML('beforeend', this.tableBodyRowTemplate(detail));
-          this.setEventAfterRerender(detail);
+          this.setEventAfterRerender(detail.name);
           break;
 
         case _domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.MODIFY:
@@ -723,7 +723,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
             (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-quantity-td', $tbodyRow).textContent = newProductInfo.quantity;
             (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-manage-buttons-td', $tbodyRow).replaceChildren();
             (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.product-manage-buttons-td', $tbodyRow).insertAdjacentHTML('beforeend', "<button class=\"table__product-modify-button\">\uC218\uC815</button>\n            <button class=\"table__product-delete-button\">\uC0AD\uC81C</button>");
-            this.setEventAfterRerender(newProductInfo);
+            this.setEventAfterRerender(newProductInfo.name);
             break;
           }
 
@@ -741,17 +741,16 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
     }
   }, {
     key: "setEventAfterRerender",
-    value: function setEventAfterRerender(_ref3) {
+    value: function setEventAfterRerender(productName) {
       var _this2 = this;
 
-      var name = _ref3.name;
-      var $tbodyRow = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)("[data-product-name=\"".concat(name, "\"]"));
+      var $tbodyRow = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)("[data-product-name=\"".concat(productName, "\"]"));
       $tbodyRow.scrollIntoView();
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.table__product-modify-button', $tbodyRow).addEventListener('click', function () {
         return _this2.handleProductModifyButtonClick($tbodyRow);
       });
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_3__.$)('.table__product-delete-button', $tbodyRow).addEventListener('click', function () {
-        return _this2.handleProductDeleteButtonClick(name);
+        return _this2.handleProductDeleteButtonClick(productName);
       });
     }
   }, {
