@@ -352,7 +352,7 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
 
       _this.initCoinInput($coinInput);
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.COIN_CHARGE, coinInputValue));
+      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.COIN_ACTION.COIN_CHARGE, coinInputValue);
     });
 
     return _this;
@@ -555,7 +555,7 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
 
       _this.initProductInputs($productNameInput, $productPriceInput, $productQuantityInput);
 
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.ADD, newProduct));
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.ADD, newProduct);
     });
 
     return _this;
@@ -682,7 +682,7 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
 
     _defineProperty(_assertThisInitialized(_this), "handleProductDeleteButtonClick", function (productName) {
       if (!window.confirm(_constants__WEBPACK_IMPORTED_MODULE_5__.CONFIRM_MESSAGE.DELETE)) return;
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.DELETE, productName));
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.DELETE, productName);
     });
 
     return _this;
@@ -801,10 +801,10 @@ var ProductCurrentSituation = /*#__PURE__*/function (_CustomElement) {
       }
 
       (0,_validators__WEBPACK_IMPORTED_MODULE_4__.checkProductValidation)(newProductInfo);
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch((0,_domains_actions__WEBPACK_IMPORTED_MODULE_1__.createAction)(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.MODIFY, {
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_0__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_1__.PRODUCT_ACTION.MODIFY, {
         oldProductName: oldProductName,
         newProductInfo: newProductInfo
-      }));
+      });
     }
   }]);
 
@@ -1773,6 +1773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
 /* harmony import */ var _utils_random__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/random */ "./src/utils/random.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./src/domains/actions.ts");
 var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || function (receiver, state, kind, f) {
     if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
@@ -1785,6 +1786,7 @@ var __classPrivateFieldSet = (undefined && undefined.__classPrivateFieldSet) || 
     return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
 };
 var _CoinStore_coinsCount, _CoinStore_subscribers;
+
 
 
 class CoinStore {
@@ -1801,7 +1803,8 @@ class CoinStore {
     subscribe(element) {
         __classPrivateFieldGet(this, _CoinStore_subscribers, "f").push(element);
     }
-    dispatch(action) {
+    dispatchAction(actionType, detail) {
+        const action = (0,_actions__WEBPACK_IMPORTED_MODULE_2__.createAction)(actionType, detail);
         this.updateCoinsCount(action);
         this.notifySubscribers();
     }
@@ -1876,7 +1879,8 @@ class ProductStore {
     subscribe(element) {
         __classPrivateFieldGet(this, _ProductStore_subscribers, "f").push(element);
     }
-    dispatch(action) {
+    dispatchAction(actionType, detail) {
+        const action = (0,_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(actionType, detail);
         this.updateProducts(action);
         this.notifySubscribers(action);
     }
