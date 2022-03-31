@@ -95,14 +95,12 @@ var CustomElement = /*#__PURE__*/function (_HTMLElement) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BASE_URL": () => (/* binding */ BASE_URL),
 /* harmony export */   "COIN": () => (/* binding */ COIN),
 /* harmony export */   "MONEY": () => (/* binding */ MONEY),
 /* harmony export */   "PRODUCT": () => (/* binding */ PRODUCT),
 /* harmony export */   "CONFIRM_MESSAGE": () => (/* binding */ CONFIRM_MESSAGE),
 /* harmony export */   "ERROR_MESSAGE": () => (/* binding */ ERROR_MESSAGE)
 /* harmony export */ });
-var BASE_URL = 'javascript-vendingmachine';
 var COIN = {
   DEFAULT_COUNT: 0
 };
@@ -155,7 +153,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -180,7 +177,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var AdministratorMenu = /*#__PURE__*/function (_CustomElement) {
   _inherits(AdministratorMenu, _CustomElement);
 
@@ -195,7 +191,7 @@ var AdministratorMenu = /*#__PURE__*/function (_CustomElement) {
   _createClass(AdministratorMenu, [{
     key: "template",
     value: function template() {
-      return "\n      <nav>\n        <a href=\"#!product-manage\"><button class=\"nav__product-manage-button product clicked\" route=\"".concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/\">\uC0C1\uD488 \uAD00\uB9AC</button></a>\n        <a href=\"#!coin-charge\"><button class=\"nav__coin-charge-button coin\" route=\"").concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/coin-charge/\">\uC794\uB3C8 \uCDA9\uC804</button></a>\n        <a href=\"#!product-purchase\"><button class=\"nav__product-purchase-button\">\uC0C1\uD488 \uAD6C\uB9E4</button></a>\n      </nav>\n    ");
+      return "\n      <nav>\n        <a href=\"#!product-manage\"><button class=\"nav__product-manage-button product clicked\">\uC0C1\uD488 \uAD00\uB9AC</button></a>\n        <a href=\"#!coin-charge\"><button class=\"nav__coin-charge-button coin\">\uC794\uB3C8 \uCDA9\uC804</button></a>\n        <a href=\"#!product-purchase\"><button class=\"nav__product-purchase-button\">\uC0C1\uD488 \uAD6C\uB9E4</button></a>\n      </nav>\n    ";
     }
   }]);
 
@@ -888,54 +884,43 @@ customElements.define('product-manage-container', ProductManageContainer);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/dom */ "./src/utils/dom.js");
- // import { BASE_URL } from './constants';
 
-var $nav = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('nav');
-var $navButtons = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$$)('button', $nav);
 var $productManageButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.nav__product-manage-button');
 var $productManageContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('product-manage-container');
 var $productNameInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.product-name-input');
 var $coinChargeButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.nav__coin-charge-button');
 var $coinChargeContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('coin-charge-container');
 var $coinInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#coin-input');
+var menuContainers = [$productManageContainer, $coinChargeContainer];
+var menuButtons = [$productManageButton, $coinChargeButton];
 
-var handleNavButtonClick = function handleNavButtonClick(clickedButtonClassList) {
-  clickedButtonClassList.add('clicked');
-  $navButtons.forEach(function (nav) {
-    if (nav.classList === clickedButtonClassList) return;
-    nav.classList.remove('clicked');
+var renderFocusContainer = function renderFocusContainer($currentContainer, $currentButton, $currentInput) {
+  menuContainers.forEach(function (container) {
+    if (container === $currentContainer) {
+      container.show();
+      return;
+    }
+
+    container.hide();
   });
-};
+  menuButtons.forEach(function (button) {
+    if (button === $currentButton) {
+      button.classList.add('clicked');
+      return;
+    }
 
-$nav.addEventListener('click', function (event) {
-  if (event.target.tagName === 'BUTTON') {
-    handleNavButtonClick(event.target.classList);
-  }
-});
-
-var renderProductManageContainer = function renderProductManageContainer() {
-  $productManageContainer.show();
-  $coinChargeContainer.hide();
-  $productManageButton.classList.add('clicked');
-  $coinChargeButton.classList.remove('clicked');
-  $productNameInput.focus();
-};
-
-var renderCoinChargeContainer = function renderCoinChargeContainer() {
-  $productManageContainer.hide();
-  $coinChargeContainer.show();
-  $productManageButton.classList.remove('clicked');
-  $coinChargeButton.classList.add('clicked');
-  $coinInput.focus();
+    button.classList.remove('clicked');
+  });
+  $currentInput.focus();
 };
 
 var renderTargetContainer = function renderTargetContainer(currentHash) {
   if (currentHash === '#!product-manage') {
-    renderProductManageContainer();
+    renderFocusContainer($productManageContainer, $productManageButton, $productNameInput);
   }
 
   if (currentHash === '#!coin-charge') {
-    renderCoinChargeContainer();
+    renderFocusContainer($coinChargeContainer, $coinChargeButton, $coinInput);
   }
 };
 
