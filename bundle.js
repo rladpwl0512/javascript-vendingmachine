@@ -102,8 +102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "CONFIRM_MESSAGE": () => (/* binding */ CONFIRM_MESSAGE),
 /* harmony export */   "ERROR_MESSAGE": () => (/* binding */ ERROR_MESSAGE)
 /* harmony export */ });
-var BASE_URL = ''; // javascript-vendingmachine
-
+var BASE_URL = 'javascript-vendingmachine';
 var COIN = {
   DEFAULT_COUNT: 0
 };
@@ -196,7 +195,7 @@ var AdministratorMenu = /*#__PURE__*/function (_CustomElement) {
   _createClass(AdministratorMenu, [{
     key: "template",
     value: function template() {
-      return "\n      <nav>\n        <button class=\"nav__product-manage-button clicked\" route=\"".concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/\">\uC0C1\uD488 \uAD00\uB9AC</button>\n        <button class=\"nav__coin-charge-button\" route=\"").concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/coin-charge/\">\uC794\uB3C8 \uCDA9\uC804</button>\n        <button class=\"nav__product-purchase-button\">\uC0C1\uD488 \uAD6C\uB9E4</button>\n      </nav>\n    ");
+      return "\n      <nav>\n        <a href=\"#!product-manage\"><button class=\"nav__product-manage-button product clicked\" route=\"".concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/\">\uC0C1\uD488 \uAD00\uB9AC</button></a>\n        <a href=\"#!coin-charge\"><button class=\"nav__coin-charge-button coin\" route=\"").concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/coin-charge/\">\uC794\uB3C8 \uCDA9\uC804</button></a>\n        <a href=\"#!product-purchase\"><button class=\"nav__product-purchase-button\">\uC0C1\uD488 \uAD6C\uB9E4</button></a>\n      </nav>\n    ");
     }
   }]);
 
@@ -889,9 +888,10 @@ customElements.define('product-manage-container', ProductManageContainer);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/dom */ "./src/utils/dom.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./constants */ "./src/constants.js");
+ // import { BASE_URL } from './constants';
 
-
+var $nav = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('nav');
+var $navButtons = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$$)('button', $nav);
 var $productManageButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.nav__product-manage-button');
 var $productManageContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('product-manage-container');
 var $productNameInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.product-name-input');
@@ -899,18 +899,26 @@ var $coinChargeButton = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.nav__coi
 var $coinChargeContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('coin-charge-container');
 var $coinInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#coin-input');
 
+var handleNavButtonClick = function handleNavButtonClick(clickedButtonClassList) {
+  clickedButtonClassList.add('clicked');
+  $navButtons.forEach(function (nav) {
+    if (nav.classList === clickedButtonClassList) return;
+    nav.classList.remove('clicked');
+  });
+};
+
+$nav.addEventListener('click', function (event) {
+  if (event.target.tagName === 'BUTTON') {
+    handleNavButtonClick(event.target.classList);
+  }
+});
+
 var renderProductManageContainer = function renderProductManageContainer() {
   $productManageContainer.show();
   $coinChargeContainer.hide();
   $productManageButton.classList.add('clicked');
   $coinChargeButton.classList.remove('clicked');
   $productNameInput.focus();
-};
-
-var handleProductManageButtonClick = function handleProductManageButtonClick(event) {
-  var route = event.target.getAttribute('route');
-  window.history.pushState({}, null, route);
-  renderProductManageContainer();
 };
 
 var renderCoinChargeContainer = function renderCoinChargeContainer() {
@@ -921,27 +929,25 @@ var renderCoinChargeContainer = function renderCoinChargeContainer() {
   $coinInput.focus();
 };
 
-var handleCoinChargeButtonClick = function handleCoinChargeButtonClick(event) {
-  var route = event.target.getAttribute('route');
-  window.history.pushState({}, null, route);
-  renderCoinChargeContainer();
-};
-
-var renderTargetContainer = function renderTargetContainer(path) {
-  if (path === "".concat(_constants__WEBPACK_IMPORTED_MODULE_1__.BASE_URL, "/")) {
+var renderTargetContainer = function renderTargetContainer(currentHash) {
+  if (currentHash === '#!product-manage') {
     renderProductManageContainer();
-    return;
   }
 
-  renderCoinChargeContainer();
+  if (currentHash === '#!coin-charge') {
+    renderCoinChargeContainer();
+  }
 };
 
-renderTargetContainer(window.location.pathname);
-$productManageButton.addEventListener('click', handleProductManageButtonClick);
-$coinChargeButton.addEventListener('click', handleCoinChargeButtonClick);
-window.addEventListener('popstate', function () {
-  renderTargetContainer(window.location.pathname);
+var renderInitContainer = function renderInitContainer(currentHash) {
+  renderTargetContainer(currentHash);
+};
+
+window.addEventListener('hashchange', function () {
+  var currentHash = window.location.hash;
+  renderTargetContainer(currentHash);
 });
+renderInitContainer(window.location.hash);
 
 /***/ }),
 
