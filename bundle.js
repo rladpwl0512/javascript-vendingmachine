@@ -156,7 +156,8 @@ var SNACKBAR = {
   PURCHASE_MONEY_INPUT_SUCCESS: '금액이 정상적으로 투입되었습니다. 이제 상품을 구매할 수 있습니다.',
   RETURN_CHANGE_SUCCESS: '잔돈이 정상적으로 반환되었습니다.',
   SIGNUP_SUCCESS: '회원가입이 정상적으로 완료되었습니다.',
-  LOGIN_SUCCESS: '로그인이 정상적으로 완료되었습니다.'
+  LOGIN_SUCCESS: '로그인이 정상적으로 완료되었습니다.',
+  MODIFY_SUCCESS: '회원 정보 수정이 정상적으로 완료되었습니다.'
 };
 var PASSWORD = {
   MIN_LENGTH: 10,
@@ -1421,6 +1422,114 @@ customElements.define('purchase-possible-product-situation', PurchasePossiblePro
 
 /***/ }),
 
+/***/ "./src/elements/UserManager/InfoModifyContainer.js":
+/*!*********************************************************!*\
+  !*** ./src/elements/UserManager/InfoModifyContainer.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/auth */ "./src/utils/auth.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+var InfoModifyContainer = /*#__PURE__*/function (_CustomElement) {
+  _inherits(InfoModifyContainer, _CustomElement);
+
+  var _super = _createSuper(InfoModifyContainer);
+
+  function InfoModifyContainer() {
+    var _this;
+
+    _classCallCheck(this, InfoModifyContainer);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "handleInfoFormSubmit", function (event) {
+      event.preventDefault();
+      var emailInputValue = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('#info-email-input').getAttribute('placeholder');
+      var nameInputValue = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('#info-name-input').value;
+      var passwordInputValue = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('#info-password-input').value;
+      var passwordConfirmValue = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('#info-password-confirm-input').value;
+      var newUserInfo = {
+        email: emailInputValue,
+        name: nameInputValue,
+        password: passwordInputValue,
+        passwordConfirm: passwordConfirmValue
+      };
+
+      try {
+        (0,_validators__WEBPACK_IMPORTED_MODULE_2__.checkNewUserInfoValidation)(newUserInfo);
+      } catch (error) {
+        alert(error.message);
+        return;
+      }
+
+      _this.renderProfileManager();
+
+      (0,_utils_auth__WEBPACK_IMPORTED_MODULE_3__.modifyUserInfo)(emailInputValue, nameInputValue, passwordInputValue);
+    });
+
+    return _this;
+  }
+
+  _createClass(InfoModifyContainer, [{
+    key: "template",
+    value: function template() {
+      return "\n      <h1>\uD68C\uC6D0 \uC815\uBCF4 \uC218\uC815</h1>\n        <form class=\"info-form\">\n          <label for=\"info-email-input\">\uC774\uBA54\uC77C</label>\n          <input type=\"email\" id=\"info-email-input\" class=\"long-input\" placeholder=\"\uC774\uBA54\uC77C \uC8FC\uC18C\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694\" disabled>\n\n          <label for=\"info-name-input\">\uC774\uB984</label>\n          <input type=\"text\" id=\"info-name-input\" class=\"long-input\" placeholder=\"\uC774\uB984\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694\" minlength=\"2\" maxLength=\"6\" required>\n          \n          <label for=\"info-password-input\">\uBE44\uBC00\uBC88\uD638</label>\n          <input type=\"password\" id=\"info-password-input\" class=\"long-input\" placeholder=\"\uBE44\uBC00\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694\" required>\n\n          <label for=\"password-confirm-input\">\uBE44\uBC00\uBC88\uD638 \uD655\uC778</label>\n          <input type=\"password\" id=\"info-password-confirm-input\" class=\"long-input\" placeholder=\"\uBE44\uBC00\uBC88\uD638\uB97C \uD55C\uBC88 \uB354 \uC785\uB825\uD574\uC8FC\uC138\uC694\" required>\n\n          <button class=\"info-confirm-button button\">\uD655\uC778</button>\n        </form>\n    ";
+    }
+  }, {
+    key: "renderProfileManager",
+    value: function renderProfileManager() {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-manager-menu').classList.add('hidden');
+    }
+  }, {
+    key: "setEvent",
+    value: function setEvent() {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.info-form').addEventListener('submit', this.handleInfoFormSubmit);
+    }
+  }]);
+
+  return InfoModifyContainer;
+}(_abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+customElements.define('info-modify-container', InfoModifyContainer);
+
+/***/ }),
+
 /***/ "./src/elements/UserManager/LoginContainer.js":
 /*!****************************************************!*\
   !*** ./src/elements/UserManager/LoginContainer.js ***!
@@ -1479,6 +1588,9 @@ var LoginContainer = /*#__PURE__*/function (_CustomElement) {
       event.preventDefault();
       var emailInputValue = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('#email-input').value;
       var passwordInputValue = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('#password-input').value;
+
+      _this.renderProfileManager();
+
       (0,_utils_auth__WEBPACK_IMPORTED_MODULE_2__.login)(emailInputValue, passwordInputValue);
     });
 
@@ -1489,6 +1601,13 @@ var LoginContainer = /*#__PURE__*/function (_CustomElement) {
     key: "template",
     value: function template() {
       return "\n      <h1>\uB85C\uADF8\uC778</h1>\n      <form class=\"login-form\">\n        <label for=\"email-input\">\uC774\uBA54\uC77C</label>\n        <input type=\"email\" id=\"email-input\" class=\"long-input\" placeholder=\"woowacourse@gmail.com\" required>\n        <label class=\"password-input\" for=\"password-input\">\uBE44\uBC00\uBC88\uD638</label>\n        <input type=\"password\" id=\"password-input\" class=\"long-input\" placeholder=\"\uBE44\uBC00\uBC88\uD638\uB97C \uC785\uB825\uD574\uC8FC\uC138\uC694\" required>\n        <button class=\"login-confirm-button button\">\uD655\uC778</button>\n      </form>\n      <div class=\"signup-suggest-container\">\n        <span class=\"signup-text\">\uC544\uC9C1 \uD68C\uC6D0\uC774 \uC544\uB2C8\uC2E0\uAC00\uC694?</span>\n        <a href=\"#!signup\" class=\"signup\">\uD68C\uC6D0\uAC00\uC785</a>    \n      </div>  \n    ";
+    }
+  }, {
+    key: "renderProfileManager",
+    value: function renderProfileManager() {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.login-manager').classList.add('hidden');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-manager').classList.remove('hidden');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-manager-menu').classList.add('hidden');
     }
   }, {
     key: "setEvent",
@@ -1580,6 +1699,8 @@ var SignupContainer = /*#__PURE__*/function (_CustomElement) {
         return;
       }
 
+      _this.renderProfileManager();
+
       (0,_utils_auth__WEBPACK_IMPORTED_MODULE_3__.signup)(emailInputValue, nameInputValue, passwordInputValue);
     });
 
@@ -1595,6 +1716,13 @@ var SignupContainer = /*#__PURE__*/function (_CustomElement) {
     key: "setEvent",
     value: function setEvent() {
       (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.signup-form').addEventListener('submit', this.handleSignupFormSubmit);
+    }
+  }, {
+    key: "renderProfileManager",
+    value: function renderProfileManager() {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.login-manager').classList.add('hidden');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-manager').classList.remove('hidden');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-manager-menu').classList.add('hidden');
     }
   }]);
 
@@ -1718,6 +1846,7 @@ var $nav = document.querySelector('nav');
 var $productManageContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('product-manage-container');
 var $coinChargeContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('coin-charge-container');
 var $productPurchaseContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('product-purchase-container');
+var $infoModifyContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('info-modify-container');
 var $loginContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('login-container');
 var $signupContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('signup-container');
 var $app = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#app');
@@ -1741,6 +1870,10 @@ var routesAuth = [{
 }, {
   hash: '#!login',
   target: $loginContainer,
+  isLongApp: false
+}, {
+  hash: '#!info-modify',
+  target: $infoModifyContainer,
   isLongApp: false
 }];
 
@@ -1779,7 +1912,7 @@ var renderAuthContainer = function renderAuthContainer(currentHash) {
 
 var renderTargetContainer = function renderTargetContainer(currentHash) {
   // user-manager-container
-  if (currentHash === '#!signup' || currentHash === '#!login') {
+  if (currentHash === '#!signup' || currentHash === '#!login' || currentHash === '#!info-modify') {
     renderAuthContainer(currentHash);
     return;
   } // user-menu-container
@@ -1809,6 +1942,8 @@ var renderTargetContainer = function renderTargetContainer(currentHash) {
 
 var renderUpdatedUserInfo = function renderUpdatedUserInfo(response) {
   (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.profile-button').textContent = response.name.substring(0, 1);
+  (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#info-email-input').setAttribute('placeholder', response.email);
+  (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('#info-name-input').setAttribute('placeholder', response.name);
 };
 
 var updateUserInfo = function updateUserInfo() {
@@ -1899,7 +2034,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "signup": () => (/* binding */ signup),
 /* harmony export */   "login": () => (/* binding */ login),
-/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */   "logout": () => (/* binding */ logout),
+/* harmony export */   "modifyUserInfo": () => (/* binding */ modifyUserInfo)
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../router */ "./src/router.js");
@@ -1936,7 +2072,6 @@ var signup = function signup(email, name, password) {
   }).then(function (response) {
     var userAuth = {
       accessToken: response.accessToken,
-      email: response.user.email,
       id: response.user.id
     };
     setLoginedUser(userAuth);
@@ -1993,6 +2128,37 @@ var login = function login(email, password) {
 var logout = function logout() {
   localStorage.removeItem('userAuth');
   (0,_router__WEBPACK_IMPORTED_MODULE_1__.renderUserView)();
+};
+var modifyUserInfo = function modifyUserInfo(email, name, password) {
+  var userInfo = JSON.parse(localStorage.getItem('userAuth'));
+  var id = userInfo.id;
+  var accessToken = "Bearer ".concat(userInfo.accessToken);
+  var url = "http://localhost:3000/600/users/".concat(id);
+  var newUserInfo = {
+    email: email,
+    name: name,
+    password: password
+  };
+  fetch(url, {
+    method: 'PUT',
+    body: JSON.stringify(newUserInfo),
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: accessToken
+    }
+  }).then(function (res) {
+    if (!res.ok) {
+      return res.text().then(function (text) {
+        throw new Error(text);
+      });
+    }
+
+    (0,_router__WEBPACK_IMPORTED_MODULE_1__.renderManagerView)();
+    (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_2__["default"])(_constants__WEBPACK_IMPORTED_MODULE_0__.SNACKBAR.MODIFY_SUCCESS);
+    return res.json();
+  })["catch"](function (error) {
+    alert(error);
+  });
 };
 
 /***/ }),
@@ -2255,9 +2421,7 @@ var checkCanPurchaseValidation = function checkCanPurchaseValidation(moneyInput,
   }
 };
 var checkNewUserInfoValidation = function checkNewUserInfoValidation(_ref2) {
-  var email = _ref2.email,
-      name = _ref2.name,
-      password = _ref2.password,
+  var password = _ref2.password,
       passwordConfirm = _ref2.passwordConfirm;
 
   if (isNotCorrectedPassword(password)) {
@@ -2316,7 +2480,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".product-input-container {\n  margin-top: 4px;\n}\n\n#user-manager-container {\n  width: 300px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.button {\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.button:hover {\n  background: var(--cyan-dark);\n}\n\n.product-add-button,\n.coin-charge-button,\n.purchase-money-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n}\n\n.login-confirm-button,\n.signup-confirm-button {\n  width: 300px;\n  height: 36px;\n}\n\nh2 {\n  margin: 48px 0 16px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 285px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button,\n.product-return-change-button,\n.table__product-purchase-button {\n  width: 100px;\n  height: 32px;\n}\n\n.product-return-change-button {\n  display: block;\n  margin: 16px auto 0;\n}\n\nlabel {\n  display: block;\n  margin: 16px 0 4px;\n}\n\n#coin-input,\n#purchase-money-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation,\n.product-return-change-situation {\n  width: 238px;\n}\n\n.long-input {\n  width: 300px;\n  height: 36px;\n  border-radius: 4px;\n}\n\n.login-form {\n  width: 100%;\n  margin: 0 auto;\n}\n\n.password-label {\n  margin-top: 16px;\n}\n\n.login-confirm-button,\n.signup-confirm-button {\n  margin-top: 30px;\n}\n\n.signup-suggest-container {\n  margin-top: 14px;\n}\n\n.signup {\n  color: var(--blue-text);\n  text-decoration: none;\n}\n\n#snackbar {\n  visibility: hidden;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: absolute;\n  z-index: 1;\n  bottom: 0;\n}\n\n.show {\n  visibility: visible !important;\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.7s;\n  animation: fadein 0.5s, fadeout 0.5s 2.7s;\n}\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 0;\n    opacity: 1;\n  }\n}\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n", "",{"version":3,"sources":["webpack://./src/css/container.css"],"names":[],"mappings":"AAAA;EACE,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;;;EAGE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,4BAA4B;AAC9B;;AAEA;;;EAGE,WAAW;EACX,YAAY;EACZ,iBAAiB;AACnB;;AAEA;;EAEE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,mBAAmB;EACnB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,cAAc;EACd,yBAAyB;EACzB,yCAAyC;AAC3C;;AAEA;;EAEE,YAAY;EACZ,4CAA4C;EAC5C,kBAAkB;AACpB;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,iBAAiB;AACnB;;AAEA;;;EAGE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,cAAc;EACd,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,kBAAkB;AACpB;;AAEA;;EAEE,YAAY;EACZ,YAAY;EACZ,mBAAmB;AACrB;;AAEA;;EAEE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,cAAc;AAChB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;;EAEE,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,uBAAuB;EACvB,qBAAqB;AACvB;;AAEA;EACE,kBAAkB;EAClB,sBAAsB;EACtB,WAAW;EACX,kBAAkB;EAClB,kBAAkB;EAClB,aAAa;EACb,kBAAkB;EAClB,UAAU;EACV,SAAS;AACX;;AAEA;EACE,8BAA8B;EAC9B,iDAAiD;EACjD,yCAAyC;AAC3C;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,YAAY;IACZ,UAAU;EACZ;AACF;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,SAAS;IACT,UAAU;EACZ;AACF;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,aAAa;IACb,UAAU;EACZ;AACF;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,aAAa;IACb,UAAU;EACZ;AACF","sourcesContent":[".product-input-container {\n  margin-top: 4px;\n}\n\n#user-manager-container {\n  width: 300px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.button {\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.button:hover {\n  background: var(--cyan-dark);\n}\n\n.product-add-button,\n.coin-charge-button,\n.purchase-money-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n}\n\n.login-confirm-button,\n.signup-confirm-button {\n  width: 300px;\n  height: 36px;\n}\n\nh2 {\n  margin: 48px 0 16px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 285px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button,\n.product-return-change-button,\n.table__product-purchase-button {\n  width: 100px;\n  height: 32px;\n}\n\n.product-return-change-button {\n  display: block;\n  margin: 16px auto 0;\n}\n\nlabel {\n  display: block;\n  margin: 16px 0 4px;\n}\n\n#coin-input,\n#purchase-money-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation,\n.product-return-change-situation {\n  width: 238px;\n}\n\n.long-input {\n  width: 300px;\n  height: 36px;\n  border-radius: 4px;\n}\n\n.login-form {\n  width: 100%;\n  margin: 0 auto;\n}\n\n.password-label {\n  margin-top: 16px;\n}\n\n.login-confirm-button,\n.signup-confirm-button {\n  margin-top: 30px;\n}\n\n.signup-suggest-container {\n  margin-top: 14px;\n}\n\n.signup {\n  color: var(--blue-text);\n  text-decoration: none;\n}\n\n#snackbar {\n  visibility: hidden;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: absolute;\n  z-index: 1;\n  bottom: 0;\n}\n\n.show {\n  visibility: visible !important;\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.7s;\n  animation: fadein 0.5s, fadeout 0.5s 2.7s;\n}\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 0;\n    opacity: 1;\n  }\n}\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".product-input-container {\n  margin-top: 4px;\n}\n\n#user-manager-container {\n  width: 300px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.button {\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.button:hover {\n  background: var(--cyan-dark);\n}\n\n.product-add-button,\n.coin-charge-button,\n.purchase-money-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n}\n\n.login-confirm-button,\n.signup-confirm-button,\n.info-confirm-button {\n  width: 300px;\n  height: 36px;\n  margin-top: 30px;\n}\n\nh2 {\n  margin: 48px 0 16px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 285px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button,\n.product-return-change-button,\n.table__product-purchase-button {\n  width: 100px;\n  height: 32px;\n}\n\n.product-return-change-button {\n  display: block;\n  margin: 16px auto 0;\n}\n\nlabel {\n  display: block;\n  margin: 16px 0 4px;\n}\n\n#coin-input,\n#purchase-money-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation,\n.product-return-change-situation {\n  width: 238px;\n}\n\n.long-input {\n  width: 300px;\n  height: 36px;\n  border-radius: 4px;\n}\n\n.login-form {\n  width: 100%;\n  margin: 0 auto;\n}\n\n.password-label {\n  margin-top: 16px;\n}\n\n.signup-suggest-container {\n  margin-top: 14px;\n}\n\n.signup {\n  color: var(--blue-text);\n  text-decoration: none;\n}\n\n#snackbar {\n  visibility: hidden;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: absolute;\n  z-index: 1;\n  bottom: 0;\n}\n\n.show {\n  visibility: visible !important;\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.7s;\n  animation: fadein 0.5s, fadeout 0.5s 2.7s;\n}\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 0;\n    opacity: 1;\n  }\n}\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n", "",{"version":3,"sources":["webpack://./src/css/container.css"],"names":[],"mappings":"AAAA;EACE,eAAe;AACjB;;AAEA;EACE,YAAY;AACd;;AAEA;;;EAGE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,4BAA4B;AAC9B;;AAEA;;;EAGE,WAAW;EACX,YAAY;EACZ,iBAAiB;AACnB;;AAEA;;;EAGE,YAAY;EACZ,YAAY;EACZ,gBAAgB;AAClB;;AAEA;EACE,mBAAmB;EACnB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,WAAW;EACX,cAAc;EACd,yBAAyB;EACzB,yCAAyC;AAC3C;;AAEA;;EAEE,YAAY;EACZ,4CAA4C;EAC5C,kBAAkB;AACpB;;AAEA;;EAEE,WAAW;EACX,YAAY;EACZ,iBAAiB;AACnB;;AAEA;;;EAGE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,cAAc;EACd,mBAAmB;AACrB;;AAEA;EACE,cAAc;EACd,kBAAkB;AACpB;;AAEA;;EAEE,YAAY;EACZ,YAAY;EACZ,mBAAmB;AACrB;;AAEA;;EAEE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,cAAc;AAChB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,gBAAgB;AAClB;;AAEA;EACE,uBAAuB;EACvB,qBAAqB;AACvB;;AAEA;EACE,kBAAkB;EAClB,sBAAsB;EACtB,WAAW;EACX,kBAAkB;EAClB,kBAAkB;EAClB,aAAa;EACb,kBAAkB;EAClB,UAAU;EACV,SAAS;AACX;;AAEA;EACE,8BAA8B;EAC9B,iDAAiD;EACjD,yCAAyC;AAC3C;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,YAAY;IACZ,UAAU;EACZ;AACF;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,SAAS;IACT,UAAU;EACZ;AACF;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,aAAa;IACb,UAAU;EACZ;AACF;;AAEA;EACE;IACE,SAAS;IACT,UAAU;EACZ;EACA;IACE,aAAa;IACb,UAAU;EACZ;AACF","sourcesContent":[".product-input-container {\n  margin-top: 4px;\n}\n\n#user-manager-container {\n  width: 300px;\n}\n\n.product-name-input,\n.product-price-input,\n.product-quantity-input {\n  width: 120px;\n  height: 36px;\n}\n\n.button {\n  background: var(--cyan);\n  color: var(--white);\n}\n\n.button:hover {\n  background: var(--cyan-dark);\n}\n\n.product-add-button,\n.coin-charge-button,\n.purchase-money-button {\n  width: 56px;\n  height: 36px;\n  margin-left: 14px;\n}\n\n.login-confirm-button,\n.signup-confirm-button,\n.info-confirm-button {\n  width: 300px;\n  height: 36px;\n  margin-top: 30px;\n}\n\nh2 {\n  margin: 48px 0 16px;\n  text-align: center;\n  font-size: 20px;\n}\n\n.product-current-situation-container {\n  height: 285px;\n  overflow-y: auto;\n}\n\ntable {\n  width: 100%;\n  margin: 0 auto;\n  border-collapse: collapse;\n  border-top: 1px solid var(--border-table);\n}\n\nth,\ntd {\n  height: 40px;\n  border-bottom: 1px solid var(--border-table);\n  text-align: center;\n}\n\n.table__product-modify-button,\n.table__product-delete-button {\n  width: 50px;\n  height: 32px;\n  margin-right: 6px;\n}\n\n.table__product-modify-confirm-button,\n.product-return-change-button,\n.table__product-purchase-button {\n  width: 100px;\n  height: 32px;\n}\n\n.product-return-change-button {\n  display: block;\n  margin: 16px auto 0;\n}\n\nlabel {\n  display: block;\n  margin: 16px 0 4px;\n}\n\n#coin-input,\n#purchase-money-input {\n  width: 300px;\n  height: 36px;\n  margin-bottom: 16px;\n}\n\n.coin-current-situation,\n.product-return-change-situation {\n  width: 238px;\n}\n\n.long-input {\n  width: 300px;\n  height: 36px;\n  border-radius: 4px;\n}\n\n.login-form {\n  width: 100%;\n  margin: 0 auto;\n}\n\n.password-label {\n  margin-top: 16px;\n}\n\n.signup-suggest-container {\n  margin-top: 14px;\n}\n\n.signup {\n  color: var(--blue-text);\n  text-decoration: none;\n}\n\n#snackbar {\n  visibility: hidden;\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: absolute;\n  z-index: 1;\n  bottom: 0;\n}\n\n.show {\n  visibility: visible !important;\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.7s;\n  animation: fadein 0.5s, fadeout 0.5s 2.7s;\n}\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 30px;\n    opacity: 1;\n  }\n}\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0;\n  }\n  to {\n    bottom: 0;\n    opacity: 1;\n  }\n}\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n\n@keyframes fadeout {\n  from {\n    bottom: 0;\n    opacity: 1;\n  }\n  to {\n    bottom: -30px;\n    opacity: 0;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3234,8 +3398,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _elements_UserManager_UserManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./elements/UserManager/UserManager */ "./src/elements/UserManager/UserManager.js");
 /* harmony import */ var _elements_UserManager_LoginContainer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./elements/UserManager/LoginContainer */ "./src/elements/UserManager/LoginContainer.js");
 /* harmony import */ var _elements_UserManager_SignupContainer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./elements/UserManager/SignupContainer */ "./src/elements/UserManager/SignupContainer.js");
-/* harmony import */ var _css_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./css/index */ "./src/css/index.css");
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./router */ "./src/router.js");
+/* harmony import */ var _elements_UserManager_InfoModifyContainer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./elements/UserManager/InfoModifyContainer */ "./src/elements/UserManager/InfoModifyContainer.js");
+/* harmony import */ var _css_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./css/index */ "./src/css/index.css");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./router */ "./src/router.js");
+
 
 
 
