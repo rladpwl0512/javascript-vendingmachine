@@ -1950,7 +1950,7 @@ var updateUserInfo = function updateUserInfo() {
   var userAuth = JSON.parse(localStorage.getItem('userAuth'));
   var id = userAuth.id;
   var accessToken = "Bearer ".concat(userAuth.accessToken);
-  var url = "http://localhost:3000/600/users/".concat(id);
+  var url = "https://woowa-vendingmachine-app.herokuapp.com/600/users/".concat(id);
   fetch(url, {
     method: 'GET',
     headers: {
@@ -2049,7 +2049,7 @@ var setLoginedUser = function setLoginedUser(userInfo) {
 };
 
 var signup = function signup(email, name, password) {
-  var url = 'http://localhost:3000/signup/';
+  var url = 'https://woowa-vendingmachine-app.herokuapp.com/signup/';
   var userInfo = {
     email: email,
     name: name,
@@ -2084,7 +2084,7 @@ var signup = function signup(email, name, password) {
   });
 };
 var login = function login(email, password) {
-  var url = 'http://localhost:3000/login/';
+  var url = 'https://woowa-vendingmachine-app.herokuapp.com/login/';
   var userInfo = {
     email: email,
     password: password
@@ -2133,7 +2133,7 @@ var modifyUserInfo = function modifyUserInfo(email, name, password) {
   var userInfo = JSON.parse(localStorage.getItem('userAuth'));
   var id = userInfo.id;
   var accessToken = "Bearer ".concat(userInfo.accessToken);
-  var url = "http://localhost:3000/600/users/".concat(id);
+  var url = "https://woowa-vendingmachine-app.herokuapp.com/600/users/".concat(id);
   var newUserInfo = {
     email: email,
     name: name,
