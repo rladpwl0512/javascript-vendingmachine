@@ -1613,6 +1613,8 @@ customElements.define('signup-container', SignupContainer);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
+/* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/auth */ "./src/utils/auth.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1635,6 +1637,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
 
 
 var UserManager = /*#__PURE__*/function (_CustomElement) {
@@ -1643,15 +1649,44 @@ var UserManager = /*#__PURE__*/function (_CustomElement) {
   var _super = _createSuper(UserManager);
 
   function UserManager() {
+    var _this;
+
     _classCallCheck(this, UserManager);
 
-    return _super.apply(this, arguments);
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "renderLoginManager", function () {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.login-manager').classList.remove('hidden');
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-manager').classList.add('hidden');
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleProfileButtonClick", function () {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-manager-menu').classList.toggle('hidden');
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleLogoutClick", function () {
+      _this.renderLoginManager();
+
+      (0,_utils_auth__WEBPACK_IMPORTED_MODULE_2__.logout)();
+    });
+
+    return _this;
   }
 
   _createClass(UserManager, [{
     key: "template",
     value: function template() {
-      return "\n      <a href=\"#!login\"><button class=\"login-button\">\uB85C\uADF8\uC778</button></a>\n    ";
+      return "\n      <a href=\"#!login\" class=\"login-manager hidden\"><button class=\"login-button\">\uB85C\uADF8\uC778</button></a>\n      <div class=\"profile-manager hidden\">\n        <button class=\"profile-button\"></button>\n        <ul class=\"profile-manager-menu hidden\">\n          <li class=\"info-modify\"><a href=\"#!info-modify\">\uD68C\uC6D0 \uC815\uBCF4 \uC218\uC815</a></li>\n          <li class=\"logout\">\uB85C\uADF8\uC544\uC6C3</li>\n        </ul>\n      </div>\n    ";
+    }
+  }, {
+    key: "setEvent",
+    value: function setEvent() {
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.profile-button').addEventListener('click', this.handleProfileButtonClick);
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_1__.$)('.logout').addEventListener('click', this.handleLogoutClick);
     }
   }]);
 
@@ -1670,10 +1705,14 @@ customElements.define('user-manager', UserManager);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "updateUserInfo": () => (/* binding */ updateUserInfo),
+/* harmony export */   "renderManagerView": () => (/* binding */ renderManagerView),
+/* harmony export */   "renderUserView": () => (/* binding */ renderUserView)
 /* harmony export */ });
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/dom */ "./src/utils/dom.js");
 
+var $administratorMenu = document.querySelector('administrator-menu');
+var $userManagerContainer = document.querySelector('#user-manager-container');
 var $userMenuContainer = document.querySelector('#user-menu-container');
 var $nav = document.querySelector('nav');
 var $productManageContainer = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('product-manage-container');
@@ -1695,6 +1734,19 @@ var routes = [{
   target: $productPurchaseContainer,
   isLongApp: true
 }];
+var routesAuth = [{
+  hash: '#!signup',
+  target: $signupContainer,
+  isLongApp: false
+}, {
+  hash: '#!login',
+  target: $loginContainer,
+  isLongApp: false
+}];
+
+var moveToPage = function moveToPage(pageHash) {
+  window.location.replace(pageHash);
+};
 
 var renderAppHeight = function renderAppHeight(isLongApp) {
   if (isLongApp) {
@@ -1707,30 +1759,38 @@ var renderAppHeight = function renderAppHeight(isLongApp) {
   $app.classList.remove('long-app');
 };
 
-var renderTargetContainer = function renderTargetContainer(currentHash) {
-  if (currentHash === '#!signup') {
-    $loginContainer.hide();
-    $signupContainer.show();
-    $userMenuContainer.setAttribute('hidden', true);
-    renderAppHeight(false);
-    return;
-  }
-
-  if (currentHash === '#!login') {
-    $loginContainer.show();
-    $signupContainer.hide();
-    $userMenuContainer.setAttribute('hidden', true);
-    renderAppHeight(false);
-    return;
-  }
-
-  $loginContainer.hide();
-  $signupContainer.hide();
-  $userMenuContainer.removeAttribute('hidden');
-  routes.forEach(function (_ref) {
+var renderAuthContainer = function renderAuthContainer(currentHash) {
+  $userManagerContainer.removeAttribute('hidden');
+  routesAuth.forEach(function (_ref) {
     var hash = _ref.hash,
         target = _ref.target,
         isLongApp = _ref.isLongApp;
+
+    if (currentHash === hash) {
+      target.show();
+      renderAppHeight(isLongApp);
+      $userMenuContainer.setAttribute('hidden', true);
+      return;
+    }
+
+    target.hide();
+  });
+};
+
+var renderTargetContainer = function renderTargetContainer(currentHash) {
+  // user-manager-container
+  if (currentHash === '#!signup' || currentHash === '#!login') {
+    renderAuthContainer(currentHash);
+    return;
+  } // user-menu-container
+
+
+  $userManagerContainer.setAttribute('hidden', true);
+  $userMenuContainer.removeAttribute('hidden');
+  routes.forEach(function (_ref2) {
+    var hash = _ref2.hash,
+        target = _ref2.target,
+        isLongApp = _ref2.isLongApp;
     var $menu = $nav.querySelector("[href='".concat(hash, "']"));
 
     if (currentHash === hash) {
@@ -1747,17 +1807,85 @@ var renderTargetContainer = function renderTargetContainer(currentHash) {
   });
 };
 
-var renderInitContainer = function renderInitContainer(currentHash) {
-  renderTargetContainer(currentHash);
+var renderUpdatedUserInfo = function renderUpdatedUserInfo(response) {
+  (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.profile-button').textContent = response.name.substring(0, 1);
+};
+
+var updateUserInfo = function updateUserInfo() {
+  var userAuth = JSON.parse(localStorage.getItem('userAuth'));
+  var id = userAuth.id;
+  var accessToken = "Bearer ".concat(userAuth.accessToken);
+  var url = "http://localhost:3000/600/users/".concat(id);
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: accessToken
+    }
+  }).then(function (res) {
+    if (!res.ok) {
+      throw Error('잘못된 접근입니다. 로그인이 되어있는지 확인하세요.');
+    }
+
+    return res.json();
+  }).then(function (response) {
+    return renderUpdatedUserInfo(response);
+  })["catch"](function (error) {
+    return alert(error);
+  });
+};
+var renderManagerView = function renderManagerView() {
+  var currentHash = window.location.hash;
+
+  if (currentHash === '#!product-manage') {
+    renderTargetContainer(currentHash);
+  }
+
+  if (currentHash !== '#!product-manage') {
+    moveToPage('#!product-manage');
+  }
+
+  $administratorMenu.show();
+  updateUserInfo();
+
+  window.onload = function () {
+    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.login-manager').classList.add('hidden');
+    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.profile-manager').classList.remove('hidden');
+    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.profile-manager-menu').classList.add('hidden');
+  };
+};
+var renderUserView = function renderUserView() {
+  var currentHash = window.location.hash;
+
+  if (currentHash === '#!product-purchase') {
+    renderTargetContainer(currentHash);
+  }
+
+  if (currentHash !== '#!product-purchase') {
+    moveToPage('#!product-purchase');
+  }
+
+  $administratorMenu.hide();
+  window.addEventListener('DOMContentLoaded', function () {
+    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.login-manager').classList.remove('hidden');
+    (0,_utils_dom__WEBPACK_IMPORTED_MODULE_0__.$)('.profile-manager').classList.add('hidden');
+  });
+};
+
+var renderInitContainer = function renderInitContainer() {
+  if (JSON.parse(localStorage.getItem('userAuth'))) {
+    renderManagerView();
+    return;
+  }
+
+  renderUserView();
 };
 
 window.addEventListener('hashchange', function () {
-  console.log('change', window.location.hash);
   var currentHash = window.location.hash;
   renderTargetContainer(currentHash);
 });
-renderInitContainer(window.location.hash);
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (renderTargetContainer);
+renderInitContainer();
 
 /***/ }),
 
@@ -1770,11 +1898,19 @@ renderInitContainer(window.location.hash);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "signup": () => (/* binding */ signup),
-/* harmony export */   "login": () => (/* binding */ login)
+/* harmony export */   "login": () => (/* binding */ login),
+/* harmony export */   "logout": () => (/* binding */ logout)
 /* harmony export */ });
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
-/* harmony import */ var _showSnackbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../router */ "./src/router.js");
+/* harmony import */ var _showSnackbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./showSnackbar */ "./src/utils/showSnackbar.js");
 
+
+
+
+var setLoginedUser = function setLoginedUser(userInfo) {
+  localStorage.setItem('userAuth', JSON.stringify(userInfo));
+};
 
 var signup = function signup(email, name, password) {
   var url = 'http://localhost:3000/signup/';
@@ -1803,9 +1939,9 @@ var signup = function signup(email, name, password) {
       email: response.user.email,
       id: response.user.id
     };
-    localStorage.setItem('userAuth', JSON.stringify(userAuth));
-    window.location.replace('#!product-manage');
-    (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_1__["default"])(_constants__WEBPACK_IMPORTED_MODULE_0__.SNACKBAR.SIGNUP_SUCCESS);
+    setLoginedUser(userAuth);
+    (0,_router__WEBPACK_IMPORTED_MODULE_1__.renderManagerView)();
+    (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_2__["default"])(_constants__WEBPACK_IMPORTED_MODULE_0__.SNACKBAR.SIGNUP_SUCCESS);
   })["catch"](function (error) {
     if (error.message === '"Email already exists"') {
       alert(_constants__WEBPACK_IMPORTED_MODULE_0__.AUTH.EMAIL_ALREADY_EXISTS);
@@ -1837,9 +1973,9 @@ var login = function login(email, password) {
       accessToken: response.accessToken,
       id: response.user.id
     };
-    localStorage.setItem('userAuth', JSON.stringify(userAuth));
-    window.location.replace('#!product-manage');
-    (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_1__["default"])(_constants__WEBPACK_IMPORTED_MODULE_0__.SNACKBAR.LOGIN_SUCCESS);
+    setLoginedUser(userAuth);
+    (0,_router__WEBPACK_IMPORTED_MODULE_1__.renderManagerView)();
+    (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_2__["default"])(_constants__WEBPACK_IMPORTED_MODULE_0__.SNACKBAR.LOGIN_SUCCESS);
   })["catch"](function (error) {
     if (error.message === '"Cannot find user"') {
       alert(_constants__WEBPACK_IMPORTED_MODULE_0__.AUTH.CANNOT_FIND_USER);
@@ -1853,6 +1989,10 @@ var login = function login(email, password) {
       alert(_constants__WEBPACK_IMPORTED_MODULE_0__.AUTH.PASSWORD_IS_TOO_SHORT);
     }
   });
+};
+var logout = function logout() {
+  localStorage.removeItem('userAuth');
+  (0,_router__WEBPACK_IMPORTED_MODULE_1__.renderUserView)();
 };
 
 /***/ }),
@@ -2150,7 +2290,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background: var(--gray-500);\n  margin-top: 32px;\n  font-size: 16px;\n}\n\n#app {\n  position: relative;\n  width: 600px;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background: var(--white);\n  border-radius: 4px;\n  border: 1px solid var(--border);\n}\n\n.long-app {\n  height: 906px;\n}\n\n.short-app {\n  height: 675px;\n}\n\nh1 {\n  text-align: center;\n  margin: 44px 0 32px;\n  font-size: 34px;\n}\n\nnav {\n  text-align: center;\n  margin-bottom: 52px;\n}\n\nbutton {\n  cursor: pointer;\n  border-radius: 4px;\n  border: none;\n  background: var(--gray-600);\n  letter-spacing: 0.5px;\n}\n\nbutton:hover {\n  background: var(--gray-700);\n}\n\n.login-button {\n  position: absolute;\n  top: 12px;\n  right: 11px;\n}\n.nav__product-manage-button,\n.nav__coin-charge-button,\n.nav__product-purchase-button,\n.login-button {\n  width: 117px;\n  height: 36px;\n}\n\n.clicked {\n  background: var(--cyan-light);\n}\n\n.clicked:hover {\n  cursor: auto;\n  background: var(--cyan-light);\n}\n\ninput {\n  padding: 0 10px;\n  border: 1px solid var(--border-input);\n  border-radius: 4px;\n}\n", "",{"version":3,"sources":["webpack://./src/css/app.css"],"names":[],"mappings":"AAAA;EACE,2BAA2B;EAC3B,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,cAAc;EACd,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,wBAAwB;EACxB,kBAAkB;EAClB,+BAA+B;AACjC;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,mBAAmB;EACnB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,kBAAkB;EAClB,YAAY;EACZ,2BAA2B;EAC3B,qBAAqB;AACvB;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;EACE,kBAAkB;EAClB,SAAS;EACT,WAAW;AACb;AACA;;;;EAIE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;EACE,YAAY;EACZ,6BAA6B;AAC/B;;AAEA;EACE,eAAe;EACf,qCAAqC;EACrC,kBAAkB;AACpB","sourcesContent":["body {\n  background: var(--gray-500);\n  margin-top: 32px;\n  font-size: 16px;\n}\n\n#app {\n  position: relative;\n  width: 600px;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background: var(--white);\n  border-radius: 4px;\n  border: 1px solid var(--border);\n}\n\n.long-app {\n  height: 906px;\n}\n\n.short-app {\n  height: 675px;\n}\n\nh1 {\n  text-align: center;\n  margin: 44px 0 32px;\n  font-size: 34px;\n}\n\nnav {\n  text-align: center;\n  margin-bottom: 52px;\n}\n\nbutton {\n  cursor: pointer;\n  border-radius: 4px;\n  border: none;\n  background: var(--gray-600);\n  letter-spacing: 0.5px;\n}\n\nbutton:hover {\n  background: var(--gray-700);\n}\n\n.login-button {\n  position: absolute;\n  top: 12px;\n  right: 11px;\n}\n.nav__product-manage-button,\n.nav__coin-charge-button,\n.nav__product-purchase-button,\n.login-button {\n  width: 117px;\n  height: 36px;\n}\n\n.clicked {\n  background: var(--cyan-light);\n}\n\n.clicked:hover {\n  cursor: auto;\n  background: var(--cyan-light);\n}\n\ninput {\n  padding: 0 10px;\n  border: 1px solid var(--border-input);\n  border-radius: 4px;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  background: var(--gray-500);\n  margin-top: 32px;\n  font-size: 16px;\n}\n\n#app {\n  position: relative;\n  width: 600px;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background: var(--white);\n  border-radius: 4px;\n  border: 1px solid var(--border);\n}\n\nuser-manager {\n  position: absolute;\n  top: 12px;\n  right: 11px;\n}\n\n.profile-manager-menu {\n  position: absolute;\n  right: 0;\n  width: 130px;\n  display: block;\n  list-style-type: none;\n  background-color: var(--gray-700);\n  border-radius: 4px;\n}\n.profile-manager-menu a {\n  color: black;\n  text-decoration: none;\n}\n\n.profile-manager-menu li {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.profile-manager-menu li:hover {\n  background-color: var(--gray-800);\n  border-radius: 4px;\n}\n\n.long-app {\n  height: 906px;\n}\n\n.short-app {\n  height: 675px;\n}\n\nh1 {\n  text-align: center;\n  margin: 44px 0 32px;\n  font-size: 34px;\n}\n\nnav {\n  text-align: center;\n  margin-bottom: 52px;\n}\n\nbutton {\n  cursor: pointer;\n  border-radius: 4px;\n  border: none;\n  background: var(--gray-600);\n  letter-spacing: 0.5px;\n}\n\nbutton:hover {\n  background: var(--gray-700);\n}\n\n.nav__product-manage-button,\n.nav__coin-charge-button,\n.nav__product-purchase-button,\n.login-button {\n  width: 117px;\n  height: 36px;\n}\n\n.profile-button {\n  width: 40px;\n  height: 40px;\n  background: var(--cyan-light);\n  border-radius: 50%;\n}\n\n.profile-button:hover {\n  background: var(--cyan-hover);\n}\n\n.clicked {\n  background: var(--cyan-medium);\n}\n\n.clicked:hover {\n  cursor: auto;\n  background: var(--cyan-medium);\n}\n\ninput {\n  padding: 0 10px;\n  border: 1px solid var(--border-input);\n  border-radius: 4px;\n}\n\n.hidden {\n  display: none;\n}\n", "",{"version":3,"sources":["webpack://./src/css/app.css"],"names":[],"mappings":"AAAA;EACE,2BAA2B;EAC3B,gBAAgB;EAChB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,cAAc;EACd,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,wBAAwB;EACxB,kBAAkB;EAClB,+BAA+B;AACjC;;AAEA;EACE,kBAAkB;EAClB,SAAS;EACT,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,QAAQ;EACR,YAAY;EACZ,cAAc;EACd,qBAAqB;EACrB,iCAAiC;EACjC,kBAAkB;AACpB;AACA;EACE,YAAY;EACZ,qBAAqB;AACvB;;AAEA;EACE,aAAa;EACb,eAAe;AACjB;;AAEA;EACE,iCAAiC;EACjC,kBAAkB;AACpB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,kBAAkB;EAClB,mBAAmB;EACnB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,kBAAkB;EAClB,YAAY;EACZ,2BAA2B;EAC3B,qBAAqB;AACvB;;AAEA;EACE,2BAA2B;AAC7B;;AAEA;;;;EAIE,YAAY;EACZ,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;EACZ,6BAA6B;EAC7B,kBAAkB;AACpB;;AAEA;EACE,6BAA6B;AAC/B;;AAEA;EACE,8BAA8B;AAChC;;AAEA;EACE,YAAY;EACZ,8BAA8B;AAChC;;AAEA;EACE,eAAe;EACf,qCAAqC;EACrC,kBAAkB;AACpB;;AAEA;EACE,aAAa;AACf","sourcesContent":["body {\n  background: var(--gray-500);\n  margin-top: 32px;\n  font-size: 16px;\n}\n\n#app {\n  position: relative;\n  width: 600px;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  background: var(--white);\n  border-radius: 4px;\n  border: 1px solid var(--border);\n}\n\nuser-manager {\n  position: absolute;\n  top: 12px;\n  right: 11px;\n}\n\n.profile-manager-menu {\n  position: absolute;\n  right: 0;\n  width: 130px;\n  display: block;\n  list-style-type: none;\n  background-color: var(--gray-700);\n  border-radius: 4px;\n}\n.profile-manager-menu a {\n  color: black;\n  text-decoration: none;\n}\n\n.profile-manager-menu li {\n  padding: 10px;\n  cursor: pointer;\n}\n\n.profile-manager-menu li:hover {\n  background-color: var(--gray-800);\n  border-radius: 4px;\n}\n\n.long-app {\n  height: 906px;\n}\n\n.short-app {\n  height: 675px;\n}\n\nh1 {\n  text-align: center;\n  margin: 44px 0 32px;\n  font-size: 34px;\n}\n\nnav {\n  text-align: center;\n  margin-bottom: 52px;\n}\n\nbutton {\n  cursor: pointer;\n  border-radius: 4px;\n  border: none;\n  background: var(--gray-600);\n  letter-spacing: 0.5px;\n}\n\nbutton:hover {\n  background: var(--gray-700);\n}\n\n.nav__product-manage-button,\n.nav__coin-charge-button,\n.nav__product-purchase-button,\n.login-button {\n  width: 117px;\n  height: 36px;\n}\n\n.profile-button {\n  width: 40px;\n  height: 40px;\n  background: var(--cyan-light);\n  border-radius: 50%;\n}\n\n.profile-button:hover {\n  background: var(--cyan-hover);\n}\n\n.clicked {\n  background: var(--cyan-medium);\n}\n\n.clicked:hover {\n  cursor: auto;\n  background: var(--cyan-medium);\n}\n\ninput {\n  padding: 0 10px;\n  border: 1px solid var(--border-input);\n  border-radius: 4px;\n}\n\n.hidden {\n  display: none;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2237,7 +2377,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --cyan-dark: #00aac3;\n  --cyan: #00bcd4;\n  --cyan-light: rgba(0, 188, 212, 0.16);\n\n  --gray-700: #ebebeb;\n  --gray-600: #f5f5f5;\n  --gray-500: #f9f9f9;\n\n  --white: #ffffff;\n\n  --border: rgba(0, 0, 0, 0.12);\n  --border-table: #dcdcdc;\n  --border-input: #b4b4b4;\n\n  --blue-text: #3581d7;\n}\n", "",{"version":3,"sources":["webpack://./src/css/root.css"],"names":[],"mappings":"AAAA;EACE,oBAAoB;EACpB,eAAe;EACf,qCAAqC;;EAErC,mBAAmB;EACnB,mBAAmB;EACnB,mBAAmB;;EAEnB,gBAAgB;;EAEhB,6BAA6B;EAC7B,uBAAuB;EACvB,uBAAuB;;EAEvB,oBAAoB;AACtB","sourcesContent":[":root {\n  --cyan-dark: #00aac3;\n  --cyan: #00bcd4;\n  --cyan-light: rgba(0, 188, 212, 0.16);\n\n  --gray-700: #ebebeb;\n  --gray-600: #f5f5f5;\n  --gray-500: #f9f9f9;\n\n  --white: #ffffff;\n\n  --border: rgba(0, 0, 0, 0.12);\n  --border-table: #dcdcdc;\n  --border-input: #b4b4b4;\n\n  --blue-text: #3581d7;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ":root {\n  --cyan-dark: #00aac3;\n  --cyan: #00bcd4;\n  --cyan-medium: rgba(0, 188, 212, 0.16);\n  --cyan-light: #d6f4f8;\n  --cyan-hover: rgb(193, 240, 247);\n\n  --gray-800: #dddbdb;\n  --gray-700: #ebebeb;\n  --gray-600: #f5f5f5;\n  --gray-500: #f9f9f9;\n\n  --white: #ffffff;\n\n  --border: rgba(0, 0, 0, 0.12);\n  --border-table: #dcdcdc;\n  --border-input: #b4b4b4;\n\n  --blue-text: #3581d7;\n}\n", "",{"version":3,"sources":["webpack://./src/css/root.css"],"names":[],"mappings":"AAAA;EACE,oBAAoB;EACpB,eAAe;EACf,sCAAsC;EACtC,qBAAqB;EACrB,gCAAgC;;EAEhC,mBAAmB;EACnB,mBAAmB;EACnB,mBAAmB;EACnB,mBAAmB;;EAEnB,gBAAgB;;EAEhB,6BAA6B;EAC7B,uBAAuB;EACvB,uBAAuB;;EAEvB,oBAAoB;AACtB","sourcesContent":[":root {\n  --cyan-dark: #00aac3;\n  --cyan: #00bcd4;\n  --cyan-medium: rgba(0, 188, 212, 0.16);\n  --cyan-light: #d6f4f8;\n  --cyan-hover: rgb(193, 240, 247);\n\n  --gray-800: #dddbdb;\n  --gray-700: #ebebeb;\n  --gray-600: #f5f5f5;\n  --gray-500: #f9f9f9;\n\n  --white: #ffffff;\n\n  --border: rgba(0, 0, 0, 0.12);\n  --border-table: #dcdcdc;\n  --border-input: #b4b4b4;\n\n  --blue-text: #3581d7;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
