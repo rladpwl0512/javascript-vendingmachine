@@ -4007,31 +4007,31 @@ var __classPrivateFieldGet = (undefined && undefined.__classPrivateFieldGet) || 
     if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
     return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
 };
-var _AuthStateaStore_isLogined;
+var _AuthStateStore_isLogined;
 
-class AuthStateaStore {
+class AuthStateStore {
     constructor() {
-        _AuthStateaStore_isLogined.set(this, Boolean(JSON.parse(localStorage.getItem('userAuth'))));
+        _AuthStateStore_isLogined.set(this, Boolean(JSON.parse(localStorage.getItem('userAuth'))));
     }
     dispatchAction(actionType) {
         const action = (0,_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(actionType);
         switch (action.type) {
             case _actions__WEBPACK_IMPORTED_MODULE_0__.AUTH_ACTION.LOGIN: {
-                __classPrivateFieldSet(this, _AuthStateaStore_isLogined, true, "f");
+                __classPrivateFieldSet(this, _AuthStateStore_isLogined, true, "f");
                 break;
             }
             case _actions__WEBPACK_IMPORTED_MODULE_0__.AUTH_ACTION.LOGOUT: {
-                __classPrivateFieldSet(this, _AuthStateaStore_isLogined, false, "f");
+                __classPrivateFieldSet(this, _AuthStateStore_isLogined, false, "f");
             }
         }
     }
     get isLogined() {
-        return __classPrivateFieldGet(this, _AuthStateaStore_isLogined, "f");
+        return __classPrivateFieldGet(this, _AuthStateStore_isLogined, "f");
     }
 }
-_AuthStateaStore_isLogined = new WeakMap();
-const AuthStateaStoreInstance = new AuthStateaStore();
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuthStateaStoreInstance);
+_AuthStateStore_isLogined = new WeakMap();
+const AuthStateStoreInstance = new AuthStateStore();
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AuthStateStoreInstance);
 
 
 /***/ }),
