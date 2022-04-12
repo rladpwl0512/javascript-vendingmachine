@@ -496,8 +496,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
-/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
 
 
 
@@ -509,6 +510,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -545,13 +547,13 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
       };
 
       try {
-        (0,_validators__WEBPACK_IMPORTED_MODULE_11__.checkProductAddValidation)(newProduct);
+        (0,_validators__WEBPACK_IMPORTED_MODULE_12__.checkProductAddValidation)(newProduct);
       } catch (error) {
-        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__["default"])(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(error.message);
         return;
       }
 
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__["default"])(SUCCESS.PRODUCT_ADD);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_11__.SUCCESS.PRODUCT_ADD);
 
       _this.initProductInputs($productNameInput, $productPriceInput, $productQuantityInput);
 
