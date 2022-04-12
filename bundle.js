@@ -1209,9 +1209,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
 /* harmony import */ var _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../domains/stores/ProductStore */ "./src/domains/stores/ProductStore.ts");
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
-/* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
+/* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
 
 
 
@@ -1224,6 +1225,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -1253,26 +1255,26 @@ var PurchasePossibleProductState = /*#__PURE__*/function (_CustomElement) {
       $productQuantityTd.textContent -= 1;
 
       if (Number($productQuantityTd.textContent) === 0) {
-        _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_9__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.PRODUCT_ACTION.DELETE, detail);
+        _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_9__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.DELETE, detail);
       }
     });
 
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleProductPurchaseButtonClick", function ($tbodyRow) {
-      var moneyInput = _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_13__["default"].coinsCount.money_input;
+      var moneyInput = _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_14__["default"].coinsCount.money_input;
       var productPrice = Number((0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)('.product-price-td', $tbodyRow).textContent);
       var purchaseProductName = $tbodyRow.dataset.purchaseProductName; // 상품을 살 수 있는지 체크
 
       try {
-        (0,_validators__WEBPACK_IMPORTED_MODULE_12__.checkCanPurchaseValidation)(moneyInput, productPrice);
+        (0,_validators__WEBPACK_IMPORTED_MODULE_13__.checkCanPurchaseValidation)(moneyInput, productPrice);
       } catch (error) {
-        showSnackbar(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_11__["default"])(error.message);
         return;
       } // 수량 -1에 대한 액션
 
 
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_9__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.PRODUCT_ACTION.PURCHASE, purchaseProductName); // 투입한 금액 업데이트에 대한 액션
+      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_9__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.PURCHASE, purchaseProductName); // 투입한 금액 업데이트에 대한 액션
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_13__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.COIN_ACTION.UPDATE_MONEY_INPUT, productPrice);
+      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_14__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.COIN_ACTION.UPDATE_MONEY_INPUT, productPrice);
     });
 
     return _this;
@@ -1297,12 +1299,12 @@ var PurchasePossibleProductState = /*#__PURE__*/function (_CustomElement) {
           detail = _ref.detail;
 
       switch (type) {
-        case _domains_actions__WEBPACK_IMPORTED_MODULE_11__.PRODUCT_ACTION.ADD:
+        case _domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.ADD:
           (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)('tbody', (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)('.purchase-possible-product-state')).insertAdjacentHTML('beforeend', this.tableBodyRowTemplate(detail));
           this.setEventAfterRerender(detail.name);
           break;
 
-        case _domains_actions__WEBPACK_IMPORTED_MODULE_11__.PRODUCT_ACTION.MODIFY:
+        case _domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.MODIFY:
           {
             var oldProductName = detail.oldProductName,
                 newProductInfo = detail.newProductInfo;
@@ -1317,13 +1319,13 @@ var PurchasePossibleProductState = /*#__PURE__*/function (_CustomElement) {
             break;
           }
 
-        case _domains_actions__WEBPACK_IMPORTED_MODULE_11__.PRODUCT_ACTION.DELETE:
+        case _domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.DELETE:
           {
             (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)("[data-purchase-product-name=\"".concat(detail, "\"]")).remove();
             break;
           }
 
-        case _domains_actions__WEBPACK_IMPORTED_MODULE_11__.PRODUCT_ACTION.PURCHASE:
+        case _domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.PURCHASE:
           {
             var _$tbodyRow = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)("[data-purchase-product-name=\"".concat(detail, "\"]"));
 
