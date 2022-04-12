@@ -101,7 +101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PRODUCT": () => (/* binding */ PRODUCT),
 /* harmony export */   "CONFIRM_MESSAGE": () => (/* binding */ CONFIRM_MESSAGE),
 /* harmony export */   "ERROR_MESSAGE": () => (/* binding */ ERROR_MESSAGE),
-/* harmony export */   "SNACKBAR": () => (/* binding */ SNACKBAR),
+/* harmony export */   "SUCCESS": () => (/* binding */ SUCCESS),
 /* harmony export */   "PASSWORD": () => (/* binding */ PASSWORD),
 /* harmony export */   "AUTH": () => (/* binding */ AUTH)
 /* harmony export */ });
@@ -149,17 +149,17 @@ var ERROR_MESSAGE = {
   IS_NOT_CORRECTED_PASSWORD: '비밀번호를 잘못 입력했습니다. 비밀번호는 최소 10자리 이상이며, 영어 대문자, 소문자, 숫자 중 최소 2종류를 조합해야합니다.',
   IS_NOT_MATCHED_PASSWORD: '비밀번호가 다릅니다. 비밀번호를 다시 확인하세요.'
 };
-var SNACKBAR = {
-  PRODUCT_MODIFY_SUCCESS: '상품 정보가 정상적으로 수정되었습니다.',
-  PRODUCT_DELETE_SUCCESS: '상품 정보가 정상적으로 삭제되었습니다.',
-  PRODUCT_ADD_SUCCESS: '상품을 정상적으로 추가했습니다.',
-  COIN_CHARGE_SUCCESS: '자판기의 잔돈이 정상적으로 충전되었습니다.',
-  PURCHASE_MONEY_INPUT_SUCCESS: '금액이 정상적으로 투입되었습니다. 이제 상품을 구매할 수 있습니다.',
-  RETURN_CHANGE_SUCCESS: '잔돈이 정상적으로 반환되었습니다.',
-  SIGNUP_SUCCESS: '회원가입이 정상적으로 완료되었습니다.',
-  LOGIN_SUCCESS: '로그인이 정상적으로 완료되었습니다.',
-  LOGOUT_SUCCESS: '로그아웃이 정상적으로 완료되었습니다.',
-  MODIFY_SUCCESS: '회원 정보 수정이 정상적으로 완료되었습니다.'
+var SUCCESS = {
+  PRODUCT_MODIFY: '상품 정보가 정상적으로 수정되었습니다.',
+  PRODUCT_DELETE: '상품 정보가 정상적으로 삭제되었습니다.',
+  PRODUCT_ADD: '상품을 정상적으로 추가했습니다.',
+  COIN_CHARGE: '자판기의 잔돈이 정상적으로 충전되었습니다.',
+  PURCHASE_MONEY_INPUT: '금액이 정상적으로 투입되었습니다. 이제 상품을 구매할 수 있습니다.',
+  RETURN_CHANGE: '잔돈이 정상적으로 반환되었습니다.',
+  SIGNUP: '회원가입이 정상적으로 완료되었습니다.',
+  LOGIN: '로그인이 정상적으로 완료되었습니다.',
+  LOGOUT: '로그아웃이 정상적으로 완료되었습니다.',
+  MODIFY: '회원 정보 수정이 정상적으로 완료되었습니다.'
 };
 var PASSWORD = {
   MIN_LENGTH: 10,
@@ -357,11 +357,11 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
       try {
         (0,_validators__WEBPACK_IMPORTED_MODULE_11__.checkCoinValidation)(coinInputValue);
       } catch (error) {
-        alert(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(error.message);
         return;
       }
 
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_12__.SNACKBAR.COIN_CHARGE_SUCCESS);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_12__.SUCCESS.COIN_CHARGE);
 
       _this.initCoinInput($coinInput);
 
@@ -497,8 +497,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
 /* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
-/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
 
 
 
@@ -510,7 +509,6 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
 
 
 
@@ -549,11 +547,11 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
       try {
         (0,_validators__WEBPACK_IMPORTED_MODULE_11__.checkProductAddValidation)(newProduct);
       } catch (error) {
-        alert(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__["default"])(error.message);
         return;
       }
 
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_12__.SNACKBAR.PRODUCT_ADD_SUCCESS);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__["default"])(SUCCESS.PRODUCT_ADD);
 
       _this.initProductInputs($productNameInput, $productPriceInput, $productQuantityInput);
 
@@ -670,7 +668,7 @@ var ProductCurrentState = /*#__PURE__*/function (_CustomElement) {
       try {
         _this.modifyProduct($tbodyRow);
       } catch (error) {
-        alert(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(error.message);
       }
     });
 
@@ -678,14 +676,14 @@ var ProductCurrentState = /*#__PURE__*/function (_CustomElement) {
       try {
         _this.modifyProduct($tbodyRow);
       } catch (error) {
-        alert(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(error.message);
       }
     });
 
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleProductDeleteButtonClick", function (productName) {
       if (!window.confirm(_constants__WEBPACK_IMPORTED_MODULE_13__.CONFIRM_MESSAGE.DELETE)) return;
       _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_8__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_9__.PRODUCT_ACTION.DELETE, productName);
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(_constants__WEBPACK_IMPORTED_MODULE_13__.SNACKBAR.PRODUCT_DELETE_SUCCESS);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(_constants__WEBPACK_IMPORTED_MODULE_13__.SUCCESS.PRODUCT_DELETE);
     });
 
     return _this;
@@ -818,7 +816,7 @@ var ProductCurrentState = /*#__PURE__*/function (_CustomElement) {
         oldProductName: oldProductName,
         newProductInfo: newProductInfo
       });
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(_constants__WEBPACK_IMPORTED_MODULE_13__.SNACKBAR.PRODUCT_MODIFY_SUCCESS);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(_constants__WEBPACK_IMPORTED_MODULE_13__.SUCCESS.PRODUCT_MODIFY);
     }
   }]);
 
@@ -1012,7 +1010,7 @@ var ProductReturnChange = /*#__PURE__*/function (_CustomElement) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleReturnChangeButtonClick", function () {
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_12__.SNACKBAR.RETURN_CHANGE_SUCCESS);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_12__.SUCCESS.RETURN_CHANGE);
       var oldCoinsCount = _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_10__["default"].coinsCount;
       _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_10__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.COIN_ACTION.RETURN_CHANGE, oldCoinsCount);
     });
@@ -1135,11 +1133,11 @@ var PurchaseMoneyForm = /*#__PURE__*/function (_CustomElement) {
       try {
         (0,_validators__WEBPACK_IMPORTED_MODULE_10__.checkPurchaseMoneyValidation)(purchaseMoneyInputValue);
       } catch (error) {
-        alert(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(error.message);
         return;
       }
 
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(_constants__WEBPACK_IMPORTED_MODULE_13__.SNACKBAR.PURCHASE_MONEY_INPUT_SUCCESS);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(_constants__WEBPACK_IMPORTED_MODULE_13__.SUCCESS.PURCHASE_MONEY_INPUT);
 
       _this.initPurchaseMoneyInput($purchaseMoneyInput);
 
@@ -1265,7 +1263,7 @@ var PurchasePossibleProductState = /*#__PURE__*/function (_CustomElement) {
       try {
         (0,_validators__WEBPACK_IMPORTED_MODULE_12__.checkCanPurchaseValidation)(moneyInput, productPrice);
       } catch (error) {
-        alert(error.message);
+        showSnackbar(error.message);
         return;
       } // 수량 -1에 대한 액션
 
@@ -1379,6 +1377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
 /* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/auth */ "./src/utils/auth.js");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
 
 
 
@@ -1390,6 +1389,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -1428,7 +1428,7 @@ var InfoModifyContainer = /*#__PURE__*/function (_CustomElement) {
       try {
         (0,_validators__WEBPACK_IMPORTED_MODULE_9__.checkNewUserInfoValidation)(newUserInfo);
       } catch (error) {
-        alert(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_11__["default"])(error.message);
         return;
       }
 
@@ -1579,6 +1579,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/auth */ "./src/utils/auth.js");
 /* harmony import */ var _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/stores/AuthStateStore */ "./src/domains/stores/AuthStateStore.ts");
 /* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
 
 
 
@@ -1590,6 +1591,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -1630,7 +1632,7 @@ var SignupContainer = /*#__PURE__*/function (_CustomElement) {
       try {
         (0,_validators__WEBPACK_IMPORTED_MODULE_9__.checkNewUserInfoValidation)(newUserInfo);
       } catch (error) {
-        alert(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(error.message);
         return;
       }
 
@@ -1777,6 +1779,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/dom */ "./src/utils/dom.js");
 /* harmony import */ var _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./domains/stores/AuthStateStore */ "./src/domains/stores/AuthStateStore.ts");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/showSnackbar */ "./src/utils/showSnackbar.js");
+
 
 
 var $administratorMenu = document.querySelector('administrator-menu');
@@ -1906,7 +1910,7 @@ var updateUserInfo = function updateUserInfo() {
   }).then(function (response) {
     return renderUpdatedUserInfo(response);
   })["catch"](function (error) {
-    return alert(error);
+    return (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_2__["default"])(error);
   });
 };
 var renderManagerView = function renderManagerView() {
@@ -2043,7 +2047,7 @@ var signup = /*#__PURE__*/function () {
             };
             setLoginedUser(userAuth);
             (0,_router__WEBPACK_IMPORTED_MODULE_3__.renderManagerView)();
-            (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SNACKBAR.SIGNUP_SUCCESS);
+            (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SUCCESS.SIGNUP);
             _context.next = 22;
             break;
 
@@ -2052,7 +2056,7 @@ var signup = /*#__PURE__*/function () {
             _context.t0 = _context["catch"](5);
 
             if (_context.t0.message === '"Email already exists"') {
-              alert(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.EMAIL_ALREADY_EXISTS);
+              (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.EMAIL_ALREADY_EXISTS);
             }
 
           case 22:
@@ -2117,7 +2121,7 @@ var login = /*#__PURE__*/function () {
             };
             setLoginedUser(userAuth);
             (0,_router__WEBPACK_IMPORTED_MODULE_3__.renderManagerView)();
-            (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SNACKBAR.LOGIN_SUCCESS);
+            (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SUCCESS.LOGIN);
             _context2.next = 24;
             break;
 
@@ -2126,15 +2130,15 @@ var login = /*#__PURE__*/function () {
             _context2.t0 = _context2["catch"](5);
 
             if (_context2.t0.message === '"Cannot find user"') {
-              alert(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.CANNOT_FIND_USER);
+              (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.CANNOT_FIND_USER);
             }
 
             if (_context2.t0.message === '"Incorrect password"') {
-              alert(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.INCORRECT_PASSWORD);
+              (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.INCORRECT_PASSWORD);
             }
 
             if (_context2.t0.message === '"Password is too short"') {
-              alert(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.PASSWORD_IS_TOO_SHORT);
+              (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.AUTH.PASSWORD_IS_TOO_SHORT);
             }
 
           case 24:
@@ -2151,7 +2155,7 @@ var login = /*#__PURE__*/function () {
 }();
 var logout = function logout() {
   localStorage.removeItem('userAuth');
-  (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SNACKBAR.LOGOUT_SUCCESS);
+  (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SUCCESS.LOGOUT);
   (0,_router__WEBPACK_IMPORTED_MODULE_3__.renderUserView)();
 };
 var modifyUserInfo = /*#__PURE__*/function () {
@@ -2199,14 +2203,14 @@ var modifyUserInfo = /*#__PURE__*/function () {
 
           case 13:
             (0,_router__WEBPACK_IMPORTED_MODULE_3__.renderManagerView)();
-            (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SNACKBAR.MODIFY_SUCCESS);
+            (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_constants__WEBPACK_IMPORTED_MODULE_2__.SUCCESS.MODIFY);
             _context3.next = 20;
             break;
 
           case 17:
             _context3.prev = 17;
             _context3.t0 = _context3["catch"](8);
-            alert(_context3.t0);
+            (0,_showSnackbar__WEBPACK_IMPORTED_MODULE_4__["default"])(_context3.t0);
 
           case 20:
           case "end":
@@ -2490,7 +2494,7 @@ var checkDuplicateProductWhenModify = function checkDuplicateProductWhenModify(p
     checker: function checker() {
       return isAlreadyExistProduct(product.name);
     },
-    errorMsg: RROR_MESSAGE.IS_ALREADY_EXIST_PRODUCT_WHEN_MODIFY
+    errorMsg: _constants__WEBPACK_IMPORTED_MODULE_2__.ERROR_MESSAGE.IS_ALREADY_EXIST_PRODUCT_WHEN_MODIFY
   }]);
 };
 var checkCoinValidation = function checkCoinValidation(coinInputValue) {
