@@ -306,8 +306,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
 /* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
@@ -365,7 +365,7 @@ var CoinChargeForm = /*#__PURE__*/function (_CustomElement) {
 
       _this.initCoinInput($coinInput);
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_7__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_8__.COIN_ACTION.COIN_CHARGE, coinInputValue);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_8__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_7__.COIN_ACTION.COIN_CHARGE, coinInputValue);
     });
 
     return _this;
@@ -492,13 +492,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js");
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js");
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/esm/defineProperty.js");
-/* harmony import */ var _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domains/stores/ProductStore */ "./src/domains/stores/ProductStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
-/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
-/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
-/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
-/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
+/* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
+/* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -537,9 +537,9 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
 
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleProductAddFormSubmit", function (event) {
       event.preventDefault();
-      var $productNameInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)('.product-name-input');
-      var $productPriceInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)('.product-price-input');
-      var $productQuantityInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)('.product-quantity-input');
+      var $productNameInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_9__.$)('.product-name-input');
+      var $productPriceInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_9__.$)('.product-price-input');
+      var $productQuantityInput = (0,_utils_dom__WEBPACK_IMPORTED_MODULE_9__.$)('.product-quantity-input');
       var newProduct = {
         name: $productNameInput.value.trim(),
         price: $productPriceInput.valueAsNumber,
@@ -547,17 +547,17 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
       };
 
       try {
-        (0,_validators__WEBPACK_IMPORTED_MODULE_12__.checkProductAddValidation)(newProduct);
+        (0,_validators__WEBPACK_IMPORTED_MODULE_11__.checkProductAddValidation)(newProduct);
       } catch (error) {
-        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__["default"])(error.message);
         return;
       }
 
-      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_11__.SUCCESS.PRODUCT_ADD);
+      (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__["default"])(_constants__WEBPACK_IMPORTED_MODULE_10__.SUCCESS.PRODUCT_ADD);
 
       _this.initProductInputs($productNameInput, $productPriceInput, $productQuantityInput);
 
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_7__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_8__.PRODUCT_ACTION.ADD, newProduct);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_13__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_7__.PRODUCT_ACTION.ADD, newProduct);
     });
 
     return _this;
@@ -571,7 +571,7 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
   }, {
     key: "setEvent",
     value: function setEvent() {
-      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_10__.$)('product-add-form').addEventListener('submit', this.handleProductAddFormSubmit);
+      (0,_utils_dom__WEBPACK_IMPORTED_MODULE_9__.$)('product-add-form').addEventListener('submit', this.handleProductAddFormSubmit);
     }
   }, {
     key: "initProductInputs",
@@ -584,7 +584,7 @@ var ProductAddForm = /*#__PURE__*/function (_CustomElement) {
   }]);
 
   return ProductAddForm;
-}(_abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_9__["default"]);
+}(_abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_8__["default"]);
 
 customElements.define('product-add-form', ProductAddForm);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductAddForm);
@@ -617,6 +617,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
 /* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -629,6 +630,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -684,7 +686,7 @@ var ProductCurrentState = /*#__PURE__*/function (_CustomElement) {
 
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleProductDeleteButtonClick", function (productName) {
       if (!window.confirm(_constants__WEBPACK_IMPORTED_MODULE_13__.CONFIRM_MESSAGE.DELETE)) return;
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_8__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_9__.PRODUCT_ACTION.DELETE, productName);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_9__.PRODUCT_ACTION.DELETE, productName);
       (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__["default"])(_constants__WEBPACK_IMPORTED_MODULE_13__.SUCCESS.PRODUCT_DELETE);
     });
 
@@ -814,7 +816,7 @@ var ProductCurrentState = /*#__PURE__*/function (_CustomElement) {
       }
 
       (0,_validators__WEBPACK_IMPORTED_MODULE_12__.checkProductValidation)(newProductInfo);
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_8__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_9__.PRODUCT_ACTION.MODIFY, {
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_9__.PRODUCT_ACTION.MODIFY, {
         oldProductName: oldProductName,
         newProductInfo: newProductInfo
       });
@@ -975,6 +977,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
 /* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -987,6 +990,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -1014,7 +1018,7 @@ var ProductReturnChange = /*#__PURE__*/function (_CustomElement) {
     (0,_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "handleReturnChangeButtonClick", function () {
       (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(_constants__WEBPACK_IMPORTED_MODULE_12__.SUCCESS.RETURN_CHANGE);
       var oldCoinsCount = _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_10__["default"].coinsCount;
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_10__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.COIN_ACTION.RETURN_CHANGE, oldCoinsCount);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_14__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.COIN_ACTION.RETURN_CHANGE, oldCoinsCount);
     });
 
     return _this;
@@ -1090,6 +1094,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../constants */ "./src/constants.js");
 /* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -1102,6 +1107,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -1143,7 +1149,7 @@ var PurchaseMoneyForm = /*#__PURE__*/function (_CustomElement) {
 
       _this.initPurchaseMoneyInput($purchaseMoneyInput);
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_11__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.COIN_ACTION.PURCHASE_MONEY_INPUT, purchaseMoneyInputValue);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.COIN_ACTION.PURCHASE_MONEY_INPUT, purchaseMoneyInputValue);
     });
 
     return _this;
@@ -1213,6 +1219,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
 /* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
 /* harmony import */ var _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../domains/stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -1225,6 +1232,7 @@ __webpack_require__.r(__webpack_exports__);
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0,_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0,_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_5__["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
 
 
 
@@ -1255,7 +1263,7 @@ var PurchasePossibleProductState = /*#__PURE__*/function (_CustomElement) {
       $productQuantityTd.textContent -= 1;
 
       if (Number($productQuantityTd.textContent) === 0) {
-        _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_9__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.DELETE, detail);
+        (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.DELETE, detail);
       }
     });
 
@@ -1272,9 +1280,9 @@ var PurchasePossibleProductState = /*#__PURE__*/function (_CustomElement) {
       } // 수량 -1에 대한 액션
 
 
-      _domains_stores_ProductStore__WEBPACK_IMPORTED_MODULE_9__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.PURCHASE, purchaseProductName); // 투입한 금액 업데이트에 대한 액션
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.PRODUCT_ACTION.PURCHASE, purchaseProductName); // 투입한 금액 업데이트에 대한 액션
 
-      _domains_stores_CoinStore__WEBPACK_IMPORTED_MODULE_14__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.COIN_ACTION.UPDATE_MONEY_INPUT, productPrice);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_15__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.COIN_ACTION.UPDATE_MONEY_INPUT, productPrice);
     });
 
     return _this;
@@ -1486,8 +1494,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/auth */ "./src/utils/auth.js");
-/* harmony import */ var _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domains/stores/AuthStateStore */ "./src/domains/stores/AuthStateStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -1530,7 +1538,7 @@ var LoginContainer = /*#__PURE__*/function (_CustomElement) {
       _this.renderProfileManager();
 
       (0,_utils_auth__WEBPACK_IMPORTED_MODULE_9__.login)(emailInputValue, passwordInputValue);
-      _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_10__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.AUTH_ACTION.LOGIN);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_11__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_10__.AUTH_ACTION.LOGIN);
     });
 
     return _this;
@@ -1581,9 +1589,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
 /* harmony import */ var _validators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../validators */ "./src/validators.js");
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/auth */ "./src/utils/auth.js");
-/* harmony import */ var _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/stores/AuthStateStore */ "./src/domains/stores/AuthStateStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
-/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../utils/showSnackbar */ "./src/utils/showSnackbar.js");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -1636,14 +1644,14 @@ var SignupContainer = /*#__PURE__*/function (_CustomElement) {
       try {
         (0,_validators__WEBPACK_IMPORTED_MODULE_9__.checkNewUserInfoValidation)(newUserInfo);
       } catch (error) {
-        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_13__["default"])(error.message);
+        (0,_utils_showSnackbar__WEBPACK_IMPORTED_MODULE_12__["default"])(error.message);
         return;
       }
 
       _this.renderProfileManager();
 
       (0,_utils_auth__WEBPACK_IMPORTED_MODULE_10__.signup)(emailInputValue, nameInputValue, passwordInputValue);
-      _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_11__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_12__.AUTH_ACTION.LOGIN);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_13__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.AUTH_ACTION.LOGIN);
     });
 
     return _this;
@@ -1693,8 +1701,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _abstracts_CustomElement__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../abstracts/CustomElement */ "./src/abstracts/CustomElement.js");
 /* harmony import */ var _utils_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/dom */ "./src/utils/dom.js");
 /* harmony import */ var _utils_auth__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/auth */ "./src/utils/auth.js");
-/* harmony import */ var _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domains/stores/AuthStateStore */ "./src/domains/stores/AuthStateStore.ts");
-/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _domains_actions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../domains/actions */ "./src/domains/actions.ts");
+/* harmony import */ var _domains_dispatcher__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../domains/dispatcher */ "./src/domains/dispatcher.ts");
 
 
 
@@ -1742,7 +1750,7 @@ var UserManager = /*#__PURE__*/function (_CustomElement) {
       _this.renderLoginManager();
 
       (0,_utils_auth__WEBPACK_IMPORTED_MODULE_9__.logout)();
-      _domains_stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_10__["default"].dispatchAction(_domains_actions__WEBPACK_IMPORTED_MODULE_11__.AUTH_ACTION.LOGOUT);
+      (0,_domains_dispatcher__WEBPACK_IMPORTED_MODULE_11__["default"])(_domains_actions__WEBPACK_IMPORTED_MODULE_10__.AUTH_ACTION.LOGOUT);
     });
 
     return _this;
@@ -3988,6 +3996,35 @@ const AUTH_ACTION = {
 
 /***/ }),
 
+/***/ "./src/domains/dispatcher.ts":
+/*!***********************************!*\
+  !*** ./src/domains/dispatcher.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./src/domains/actions.ts");
+/* harmony import */ var _stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stores/AuthStateStore */ "./src/domains/stores/AuthStateStore.ts");
+/* harmony import */ var _stores_ProductStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stores/ProductStore */ "./src/domains/stores/ProductStore.ts");
+/* harmony import */ var _stores_CoinStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stores/CoinStore */ "./src/domains/stores/CoinStore.ts");
+
+
+
+
+const reducer = Object.assign(Object.assign(Object.assign({}, _stores_AuthStateStore__WEBPACK_IMPORTED_MODULE_1__["default"].reducer), _stores_ProductStore__WEBPACK_IMPORTED_MODULE_2__["default"].reducer), _stores_CoinStore__WEBPACK_IMPORTED_MODULE_3__["default"].reducer);
+const dispatcher = (actionType, detail) => {
+    const action = (0,_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(actionType, detail);
+    reducer[actionType](action);
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dispatcher);
+
+
+/***/ }),
+
 /***/ "./src/domains/stores/AuthStateStore.ts":
 /*!**********************************************!*\
   !*** ./src/domains/stores/AuthStateStore.ts ***!
@@ -4016,18 +4053,14 @@ var _AuthStateStore_isLogined;
 class AuthStateStore {
     constructor() {
         _AuthStateStore_isLogined.set(this, Boolean(JSON.parse(localStorage.getItem('userAuth'))));
-    }
-    dispatchAction(actionType) {
-        const action = (0,_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(actionType);
-        switch (action.type) {
-            case _actions__WEBPACK_IMPORTED_MODULE_0__.AUTH_ACTION.LOGIN: {
+        this.reducer = {
+            [_actions__WEBPACK_IMPORTED_MODULE_0__.AUTH_ACTION.LOGIN]: () => {
                 __classPrivateFieldSet(this, _AuthStateStore_isLogined, true, "f");
-                break;
-            }
-            case _actions__WEBPACK_IMPORTED_MODULE_0__.AUTH_ACTION.LOGOUT: {
+            },
+            [_actions__WEBPACK_IMPORTED_MODULE_0__.AUTH_ACTION.LOGOUT]: () => {
                 __classPrivateFieldSet(this, _AuthStateStore_isLogined, false, "f");
-            }
-        }
+            },
+        };
     }
     get isLogined() {
         return __classPrivateFieldGet(this, _AuthStateStore_isLogined, "f");
@@ -4080,31 +4113,27 @@ class CoinStore {
             money_input: _constants__WEBPACK_IMPORTED_MODULE_0__.MONEY.DEFAULT,
         });
         _CoinStore_subscribers.set(this, []);
+        this.reducer = {
+            [_actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.COIN_CHARGE]: (action) => {
+                this.updateCoinsCount(action);
+                this.notifySubscribers(action);
+            },
+            [_actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.PURCHASE_MONEY_INPUT]: (action) => {
+                this.updatePurchaseMoneyInput(action);
+                this.notifySubscribers(action);
+            },
+            [_actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.UPDATE_MONEY_INPUT]: (action) => {
+                this.updatePurchaseMoneyInput(action);
+                this.notifySubscribers(action);
+            },
+            [_actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.RETURN_CHANGE]: (action) => {
+                this.returnChange();
+                this.notifySubscribers(action);
+            },
+        };
     }
     subscribe(element) {
         __classPrivateFieldGet(this, _CoinStore_subscribers, "f").push(element);
-    }
-    dispatchAction(actionType, detail) {
-        const action = (0,_actions__WEBPACK_IMPORTED_MODULE_2__.createAction)(actionType, detail);
-        switch (actionType) {
-            case _actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.COIN_CHARGE: {
-                this.updateCoinsCount(action);
-                break;
-            }
-            case _actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.PURCHASE_MONEY_INPUT: {
-                this.updatePurchaseMoneyInput(action);
-                break;
-            }
-            case _actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.UPDATE_MONEY_INPUT: {
-                this.updatePurchaseMoneyInput(action);
-                break;
-            }
-            case _actions__WEBPACK_IMPORTED_MODULE_2__.COIN_ACTION.RETURN_CHANGE: {
-                this.returnChange();
-                break;
-            }
-        }
-        this.notifySubscribers(action);
     }
     returnChange() {
         const coinKind = [500, 100, 50, 10];
@@ -4207,14 +4236,27 @@ class ProductStore {
     constructor() {
         _ProductStore_products.set(this, []);
         _ProductStore_subscribers.set(this, []);
+        this.reducer = {
+            [_actions__WEBPACK_IMPORTED_MODULE_0__.PRODUCT_ACTION.ADD]: (action) => {
+                this.updateProducts(action);
+                this.notifySubscribers(action);
+            },
+            [_actions__WEBPACK_IMPORTED_MODULE_0__.PRODUCT_ACTION.MODIFY]: (action) => {
+                this.updateProducts(action);
+                this.notifySubscribers(action);
+            },
+            [_actions__WEBPACK_IMPORTED_MODULE_0__.PRODUCT_ACTION.DELETE]: (action) => {
+                this.updateProducts(action);
+                this.notifySubscribers(action);
+            },
+            [_actions__WEBPACK_IMPORTED_MODULE_0__.PRODUCT_ACTION.PURCHASE]: (action) => {
+                this.updateProducts(action);
+                this.notifySubscribers(action);
+            },
+        };
     }
     subscribe(element) {
         __classPrivateFieldGet(this, _ProductStore_subscribers, "f").push(element);
-    }
-    dispatchAction(actionType, detail) {
-        const action = (0,_actions__WEBPACK_IMPORTED_MODULE_0__.createAction)(actionType, detail);
-        this.updateProducts(action);
-        this.notifySubscribers(action);
     }
     updateProducts(action) {
         const newProducts = this.generateNewProducts(__classPrivateFieldGet(this, _ProductStore_products, "f"), action);
